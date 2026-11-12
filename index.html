@@ -1,0 +1,2486 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>A.P.R.O.V.A Conecta — Seu futuro começa com informação</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --r:#d71920;
+  --r2:#ef3038;
+  --r-soft:#fff0f1;
+  --r-border:#f6c5c8;
+  --b:#111214;
+  --ink:#1d1f23;
+  --m:#6b7078;
+  --line:#e6e7eb;
+  --bg:#f6f7f9;
+  --w:#ffffff;
+  --shadow:0 12px 38px rgba(17,18,20,0.07);
+  --shadow-lg:0 24px 60px rgba(17,18,20,0.14);
+  --rad:18px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;color:var(--ink);background:var(--bg);-webkit-font-smoothing:antialiased}
+button,input,select,textarea{font:inherit}
+button{cursor:pointer;border:0;transition:all .18s ease}
+a{text-decoration:none;color:inherit}
+.hidden{display:none!important}
+
+/* Buttons */
+.btn{padding:12px 18px;border-radius:12px;font-weight:800;font-size:13.5px;display:inline-flex;align-items:center;justify-content:center;gap:8px}
+.btn:hover{transform:translateY(-1px)}
+.red{background:var(--r);color:#fff;box-shadow:0 6px 18px rgba(215,25,32,0.24)}
+.red:hover{background:#be141b}
+.dark{background:var(--b);color:#fff}
+.light{background:#f0f1f4;color:var(--ink)}
+.light:hover{background:#e4e6eb}
+.ghost{background:transparent;color:var(--m)}
+.ghost:hover{color:var(--ink);background:#f1f2f5}
+.sm{padding:8px 13px;font-size:12px;border-radius:10px}
+
+/* Toast */
+.toast{position:fixed;right:20px;bottom:20px;background:#111214;color:#fff;padding:13px 18px;border-radius:13px;z-index:999;box-shadow:var(--shadow-lg);font-size:13px;font-weight:600;border-left:4px solid var(--r);animation:slideUp .25s ease}
+@keyframes slideUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+
+/* Header */
+header{height:74px;background:rgba(255,255,255,0.95);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);display:flex;align-items:center;padding:0 5%;gap:28px;position:sticky;top:0;z-index:40}
+.brand{display:flex;align-items:center;gap:11px;font-weight:900;font-size:18px;letter-spacing:-0.6px;white-space:nowrap}
+.mark{width:38px;height:38px;background:var(--r);border-radius:11px;color:#fff;display:grid;place-items:center;font-weight:900;font-size:19px;box-shadow:0 4px 12px rgba(215,25,32,0.28);position:relative;flex-shrink:0}
+.mark::after{content:"";position:absolute;bottom:6px;right:6px;width:5px;height:5px;border-radius:50%;background:#111214}
+.brand-text{display:flex;flex-direction:column;line-height:1}
+.brand-title{display:flex;align-items:center;gap:5px;color:var(--b)}
+.brand-title em{color:var(--r);font-style:normal}
+.brand-sub{font-size:9.5px;font-weight:600;color:var(--m);letter-spacing:0.4px;margin-top:2px}
+.nav{display:flex;gap:22px;flex:1;color:#555962;font-size:14px;font-weight:600}
+.nav a{padding:6px 4px;transition:color .15s}
+.nav a:hover{color:var(--r)}
+.head-actions{display:flex;gap:10px;align-items:center}
+
+/* Landing */
+.landing .hero{background:#fff;padding:74px 6% 84px;display:grid;grid-template-columns:1.05fr 0.95fr;gap:54px;align-items:center;border-bottom:1px solid var(--line)}
+.eyebrow{display:inline-flex;align-items:center;gap:7px;padding:8px 14px;border-radius:99px;background:var(--r-soft);color:var(--r);font-weight:800;font-size:11px;letter-spacing:0.6px}
+.hero h1{font-size:clamp(42px,4.8vw,68px);line-height:1.02;letter-spacing:-2.8px;margin:18px 0;color:var(--b)}
+.hero h1 span{color:var(--r)}
+.lead{font-size:17.5px;color:#5f646d;line-height:1.65;max-width:590px}
+.acronym-pill{display:inline-block;margin-top:10px;padding:10px 14px;background:#f7f8fa;border:1px solid var(--line);border-radius:12px;font-size:12px;color:#4f545d}
+.acronym-pill b{color:var(--r)}
+.actions{display:flex;flex-wrap:wrap;gap:12px;margin:26px 0 16px}
+.hero-stats{display:flex;gap:28px;margin-top:26px;padding-top:22px;border-top:1px solid var(--line)}
+.hero-stats div strong{display:block;font-size:22px;font-weight:900;color:var(--b)}
+.hero-stats div span{font-size:12px;color:var(--m)}
+
+/* Mockup in Hero */
+.mock{background:#121316;border-radius:26px;padding:12px;box-shadow:var(--shadow-lg);position:relative}
+.screen{background:#f6f7f9;border-radius:18px;overflow:hidden}
+.screenbar{height:34px;background:#fff;border-bottom:1px solid var(--line);display:flex;align-items:center;padding:0 14px;gap:6px}
+.dot-win{width:9px;height:9px;border-radius:50%;background:#e0e2e7}
+.dot-win.r{background:var(--r)}
+.miniapp{display:grid;grid-template-columns:145px 1fr;min-height:370px}
+.miniside{background:#fff;padding:16px 10px;border-right:1px solid var(--line)}
+.miniitem{font-size:11px;padding:9px 10px;border-radius:9px;color:#686c75;margin:3px 0;font-weight:600}
+.miniitem.a{background:var(--r-soft);color:var(--r);font-weight:800}
+.minimain{padding:18px}
+.ministats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:14px 0}
+.ministat{background:#fff;padding:11px;border-radius:11px;border:1px solid var(--line)}
+.ministat small{font-size:9px;color:#7c8088;font-weight:600}
+.ministat b{display:block;font-size:17px;margin-top:3px;color:var(--b)}
+.minicard{background:#fff;border:1px solid var(--line);border-radius:12px;padding:13px;margin-top:9px}
+.bar{height:8px;background:#e9eaee;border-radius:99px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--r);width:78%;border-radius:99px;transition:width .4s ease}
+
+/* Sections */
+.section{padding:76px 6%}
+.section h2{text-align:center;font-size:38px;letter-spacing:-1.8px;margin:0 0 10px;color:var(--b)}
+.section>p{text-align:center;color:var(--m);max-width:650px;margin:0 auto;line-height:1.6;font-size:15.5px}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:42px}
+.step,.card{background:#fff;border:1px solid var(--line);border-radius:var(--rad);padding:23px;box-shadow:var(--shadow)}
+.step .n{color:var(--r);font-weight:900;font-size:14px;background:var(--r-soft);padding:5px 10px;border-radius:8px}
+.step h3{margin:26px 0 8px;font-size:18px}
+.step p,.muted{color:var(--m);line-height:1.55;font-size:13px}
+.features-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:38px}
+.darkband{background:#111214;color:#fff;padding:64px 6%;display:flex;justify-content:space-between;align-items:center;gap:30px}
+.darkband h2{font-size:36px;letter-spacing:-1.6px;margin:0 0 8px}
+.darkband p{color:#b4b8c0;line-height:1.6;margin:0}
+footer{background:#0b0c0e;color:#9da2ab;padding:34px 6%;display:flex;flex-wrap:wrap;justify-content:space-between;gap:14px;font-size:12.5px;border-top:1px solid #1e2025}
+
+/* Auth & Onboarding Quiz */
+.auth{min-height:calc(100vh - 74px);display:grid;place-items:center;padding:30px 16px}
+.authbox{width:min(560px,100%);background:#fff;border:1px solid var(--line);border-radius:22px;padding:32px;box-shadow:var(--shadow)}
+.authbox h2{font-size:28px;letter-spacing:-1px;margin:0 0 6px}
+.field{margin:14px 0}
+.field label{display:block;font-size:12px;font-weight:800;margin-bottom:6px;color:var(--b)}
+.field input,.field select,.field textarea{width:100%;padding:12px 13px;border:1px solid #d9dce2;border-radius:11px;outline:0;background:#fff;font-size:13.5px}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--r);box-shadow:0 0 0 3px rgba(215,25,32,0.1)}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.progressTop{height:7px;background:#eceef2;border-radius:99px;margin:16px 0 24px;overflow:hidden}
+.progressTop i{display:block;height:100%;background:var(--r);transition:.35s ease}
+.question{font-size:23px;font-weight:900;letter-spacing:-0.6px;line-height:1.25}
+.options{display:grid;gap:10px;margin-top:18px}
+.option{background:#fff;border:1.5px solid var(--line);padding:14px 16px;border-radius:13px;text-align:left;font-weight:700;font-size:13.5px;display:flex;align-items:center;justify-content:space-between}
+.option:hover,.option.sel{border-color:var(--r);background:var(--r-soft);color:var(--r)}
+.affinity-row{margin:12px 0}
+.affinity-head{display:flex;justify-content:space-between;font-size:12.5px;font-weight:700;margin-bottom:5px}
+
+/* App Shell */
+.app{display:none}
+.app:not(.hidden){display:block}
+.side{position:fixed;top:0;bottom:0;left:0;width:256px;background:#fff;border-right:1px solid var(--line);padding:18px 13px;overflow-y:auto;z-index:35}
+.side .brand{padding:6px 8px 18px;border-bottom:1px solid var(--line);margin-bottom:8px}
+.side a{display:flex;align-items:center;justify-content:space-between;padding:10px 12px;border-radius:11px;color:#5c6069;font-size:13px;font-weight:700;margin:2px 0;cursor:pointer}
+.side a:hover,.side a.active{background:var(--r-soft);color:var(--r)}
+.side .label{font-size:10px;text-transform:uppercase;color:#9da1aa;padding:14px 12px 5px;letter-spacing:1px;font-weight:800}
+.badge-count{background:var(--r);color:#fff;font-size:10px;font-weight:800;padding:2px 7px;border-radius:99px}
+
+.main{margin-left:256px;padding:26px 4% 60px;max-width:1540px}
+.topbar-app{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:18px;flex-wrap:wrap}
+.page{display:none}
+.page.active{display:block;animation:fadeIn .2s ease}
+@keyframes fadeIn{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
+
+.welcome{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+.welcome h2{margin:0;font-size:28px;letter-spacing:-0.9px;color:var(--b)}
+.welcome p{color:var(--m);margin:4px 0 0;font-size:14px}
+.avatar{width:44px;height:44px;border-radius:50%;background:var(--b);color:#fff;display:grid;place-items:center;font-weight:900;font-size:16px;flex-shrink:0}
+.avatar.red-av{background:var(--r)}
+
+/* KPIs & Grids */
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:22px 0}
+.kpi{background:#fff;border:1px solid var(--line);border-radius:17px;padding:18px;box-shadow:var(--shadow)}
+.kpi small{color:var(--m);font-weight:600;font-size:12px}
+.kpi strong{display:block;font-size:26px;margin:6px 0;color:var(--b)}
+.kpi .sub-kpi{font-size:11px;font-weight:700;color:var(--r)}
+.grid2{display:grid;grid-template-columns:1.25fr 0.85fr;gap:18px}
+.card h3{margin:0 0 4px;font-size:17px}
+.card-sub{font-size:12px;color:var(--m);margin-bottom:15px}
+.goal{background:#f7f8fa;border:1px solid var(--line);border-radius:13px;padding:15px;margin-top:10px}
+.goalrow{display:flex;justify-content:space-between;font-size:13px;font-weight:800}
+
+.rec{display:flex;gap:12px;padding:13px 0;border-top:1px solid var(--line);align-items:flex-start}
+.rec:first-child{border-top:0;padding-top:4px}
+.ico{min-width:42px;height:42px;padding:0 8px;border-radius:12px;background:var(--r-soft);color:var(--r);display:grid;place-items:center;flex:none;font-weight:900;font-size:12px}
+.rec b{font-size:13.5px;display:block}
+.rec p{font-size:12px;color:var(--m);margin:3px 0 0;line-height:1.45}
+
+.cards3{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}
+.tag{font-size:10px;color:var(--r);font-weight:900;background:var(--r-soft);padding:5px 9px;border-radius:99px;display:inline-block;letter-spacing:0.4px}
+.tag.dark-tag{background:#111214;color:#fff}
+.card h4{font-size:16px;margin:13px 0 6px}
+.card p{font-size:12.5px;color:var(--m);line-height:1.55}
+.cardfoot{display:flex;justify-content:space-between;align-items:center;margin-top:16px;padding-top:12px;border-top:1px solid var(--line);font-size:11.5px;color:var(--m);gap:8px}
+
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0}
+.pill{padding:8px 13px;border-radius:99px;background:#eff0f3;color:var(--ink);font-size:12px;font-weight:700}
+.pill:hover,.pill.active-pill{background:var(--r);color:#fff}
+.saved{background:var(--r-soft)!important;color:var(--r)!important;border:1px solid var(--r-border)}
+
+/* Tasks */
+.task{display:grid;grid-template-columns:72px 1fr auto;gap:14px;padding:15px 0;border-top:1px solid var(--line);align-items:center}
+.task:first-child{border-top:0}
+.check{width:22px;height:22px;border:2px solid #c9cdd4;border-radius:7px;background:#fff;display:grid;place-items:center}
+.check.done{background:var(--r);border-color:var(--r)}
+.check.done:after{content:"✓";color:#fff;font-size:13px;font-weight:900}
+
+/* Social Feed & Direct Chat (Conexão entre Estudantes) */
+.connect-layout{display:grid;grid-template-columns:1.35fr 0.75fr;gap:18px;margin-top:18px}
+.post{margin-bottom:15px}
+.posthead{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.posthead-left{display:flex;gap:11px;align-items:center}
+.posthead small{display:block;color:var(--m);font-size:11.5px}
+.posttext{font-size:13.8px;line-height:1.6;margin:14px 0;white-space:pre-line}
+.postactions{border-top:1px solid var(--line);padding-top:12px;display:flex;flex-wrap:wrap;gap:7px}
+.commentBox{margin-top:12px;padding-top:10px;border-top:1px solid var(--line)}
+.commentItem{padding:8px 11px;background:#f7f8fa;border-radius:10px;margin-top:6px;font-size:12px}
+
+/* Direct Messages / Chat entre Usuários Cadastrados */
+.chat-shell{display:grid;grid-template-columns:290px 1fr;background:#fff;border:1px solid var(--line);border-radius:var(--rad);overflow:hidden;min-height:540px;box-shadow:var(--shadow);margin-top:18px}
+.chat-users{border-right:1px solid var(--line);background:#fafbfc;display:flex;flex-direction:column}
+.chat-users-head{padding:16px;border-bottom:1px solid var(--line);background:#fff}
+.chat-user-list{overflow-y:auto;flex:1}
+.chat-user-item{display:flex;align-items:center;gap:11px;padding:13px 15px;border-bottom:1px solid var(--line);cursor:pointer;transition:background .15s}
+.chat-user-item:hover,.chat-user-item.active{background:var(--r-soft)}
+.chat-user-info{flex:1;min-width:0}
+.chat-user-info b{display:block;font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.chat-user-info small{display:block;font-size:11px;color:var(--m);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.online-dot{width:9px;height:9px;border-radius:50%;background:#18a957;flex-shrink:0}
+.chat-window{display:flex;flex-direction:column;background:#fff}
+.chat-win-head{padding:15px 20px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:10px}
+.chat-messages{flex:1;padding:20px;overflow-y:auto;background:#f7f8fa;display:flex;flex-direction:column;gap:10px;max-height:380px}
+.msg-bubble{max-width:74%;padding:11px 15px;border-radius:15px;font-size:13px;line-height:1.5;position:relative}
+.msg-bubble.me{align-self:flex-end;background:var(--r);color:#fff;border-bottom-right-radius:4px}
+.msg-bubble.them{align-self:flex-start;background:#fff;color:var(--ink);border:1px solid var(--line);border-bottom-left-radius:4px}
+.msg-meta{font-size:10px;opacity:0.75;margin-top:4px;display:block}
+.chat-input-bar{padding:13px 16px;border-top:1px solid var(--line);display:flex;gap:9px;background:#fff}
+
+/* Journey & Gamification */
+.journey{display:flex;justify-content:space-between;text-align:center;gap:8px;margin-top:22px;position:relative}
+.journey>div{flex:1}
+.jdot{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:#eceef2;margin:0 auto 6px;font-weight:800;font-size:12px}
+.jdot.on{background:var(--r);color:#fff;box-shadow:0 4px 12px rgba(215,25,32,0.3)}
+.achievements-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:11px;margin-top:14px}
+.ach-card{border:1px solid var(--line);border-radius:13px;padding:13px;background:#fafbfc;display:flex;gap:10px;align-items:center}
+.ach-card.unlocked{background:var(--r-soft);border-color:var(--r-border)}
+
+.search{width:100%;padding:12px 14px;border:1px solid var(--line);border-radius:11px;outline:0;background:#fff;font-size:13.5px}
+.search:focus{border-color:var(--r)}
+.compare{width:100%;border-collapse:collapse;font-size:13px}
+.compare th,.compare td{padding:13px 14px;border-bottom:1px solid var(--line);text-align:left}
+.compare th{background:#f7f8fa;font-weight:800}
+
+.activityTop{display:flex;justify-content:space-between;align-items:center;gap:10px;color:var(--m);font-size:12px}
+.answerFeedback{margin-top:16px;padding:15px;border-radius:13px;background:#f7f8fa;border:1px solid var(--line)}
+.correct{border-color:#b7dfc0;background:#effaf1}
+.wrong{border-color:#f0c0c3;background:#fff2f3}
+.choiceDisabled{pointer-events:none;opacity:.75}
+.serverBadge{font-size:11px;font-weight:700;padding:6px 11px;border-radius:99px;background:#eff0f3;color:var(--m);display:inline-flex;align-items:center;gap:6px}
+.serverBadge.online{background:#eaf8ee;color:#16793b}
+.empty{padding:32px;text-align:center;color:var(--m);font-size:13.5px}
+
+/* Mobile Bar */
+.mobilebar{display:none}
+@media(max-width:960px){
+  header{padding:0 16px}
+  .nav{display:none}
+  .landing .hero{grid-template-columns:1fr;padding:50px 6%}
+  .steps,.features-grid{grid-template-columns:1fr 1fr}
+  .darkband{flex-direction:column;align-items:flex-start}
+  .side{display:none}
+  .main{margin:0;padding:22px 16px 92px}
+  .kpis{grid-template-columns:1fr 1fr}
+  .grid2,.connect-layout{grid-template-columns:1fr}
+  .cards3{grid-template-columns:1fr 1fr}
+  .chat-shell{grid-template-columns:1fr}
+  .mobilebar{position:fixed;display:flex;bottom:0;left:0;right:0;background:#fff;border-top:1px solid var(--line);z-index:50;justify-content:space-around;padding:8px 4px;box-shadow:0 -4px 20px rgba(0,0,0,0.05)}
+  .mobilebar button{background:none;color:var(--m);font-size:10px;font-weight:700;display:grid;place-items:center;gap:2px}
+  .mobilebar button.on{color:var(--r)}
+}
+@media(max-width:580px){
+  .head-actions .light{display:none}
+  .steps,.features-grid,.cards3,.row{grid-template-columns:1fr}
+  .miniapp{grid-template-columns:1fr}
+  .miniside{display:none}
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER PÚBLICO -->
+<header id="header">
+  <a class="brand" href="#" onclick="landing()">
+    <span class="mark">A</span>
+    <span class="brand-text">
+      <span class="brand-title">A.P.R.O.V.A <em>Conecta</em></span>
+      <span class="brand-sub">ORIENTAÇÃO • ESTUDOS • COMUNIDADE</span>
+    </span>
+  </a>
+  <nav class="nav">
+    <a href="#" onclick="landing()">Início</a>
+    <a href="#como">Como funciona</a>
+    <a href="#" onclick="openApp('opps')">Oportunidades</a>
+    <a href="#" onclick="openApp('colleges')">Faculdades</a>
+    <a href="#" onclick="openApp('opps')">Bolsas</a>
+    <a href="#" onclick="openApp('connect')">Comunidade</a>
+    <a href="#sobre">Sobre nós</a>
+  </nav>
+  <div class="head-actions">
+    <button class="btn light" onclick="showAuth('login')">Entrar</button>
+    <button class="btn red" onclick="showAuth('signup')">Criar minha conta</button>
+  </div>
+</header>
+
+<!-- LANDING PAGE -->
+<div id="landing" class="landing">
+  <section class="hero">
+    <div>
+      <span class="eyebrow">● EDUCAÇÃO • ORIENTAÇÃO • REDE ESTUDANTIL</span>
+      <h1>Seu futuro começa com <span>informação.</span></h1>
+      <p class="lead">O A.P.R.O.V.A Conecta reúne orientação vocacional, cronograma inteligente, bolsas, faculdades e uma rede real de estudantes para ajudar você a transformar planos em aprovações.</p>
+      <div class="acronym-pill"><b>A.P.R.O.V.A</b> — Apoio e Preparação para Resultados e Oportunidades em Vestibulares e Avaliações</div>
+      <div class="actions">
+        <button class="btn red" onclick="showAuth('signup')">Criar meu perfil →</button>
+        <button class="btn light" onclick="showAuth('signup')">Descobrir meu caminho</button>
+        <button class="btn ghost" onclick="quickDemoEnter()">Testar demonstração imediata</button>
+      </div>
+      <div class="hero-stats">
+        <div><strong>100%</strong><span>Personalizado ao seu perfil</span></div>
+        <div><strong>ENEM & SISU</strong><span>Guia + Simulados + Bolsas</span></div>
+        <div><strong>Conecta</strong><span>Chat e rede entre estudantes</span></div>
+      </div>
+    </div>
+
+    <div class="mock">
+      <div class="screen">
+        <div class="screenbar">
+          <span class="dot-win r"></span><span class="dot-win"></span><span class="dot-win"></span>
+          <small style="margin-left:8px;font-size:10px;color:#777;font-weight:700">app.aprovaconecta.edu.br</small>
+        </div>
+        <div class="miniapp">
+          <div class="miniside">
+            <b style="font-size:12px;display:block;margin-bottom:10px">A.P.R.O.V.A</b>
+            <div class="miniitem a">⌂ Dashboard</div>
+            <div class="miniitem">◈ Meu Plano</div>
+            <div class="miniitem">◎ Conecta & Chat</div>
+            <div class="miniitem">🎓 Faculdades</div>
+            <div class="miniitem">✦ Oportunidades</div>
+          </div>
+          <div class="minimain">
+            <b style="font-size:15px">Olá, João! 👋</b>
+            <div class="ministats">
+              <div class="ministat"><small>Estudos</small><b>72%</b></div>
+              <div class="ministat"><small>Questões</small><b>124</b></div>
+              <div class="ministat"><small>Sequência</small><b>8 dias 🔥</b></div>
+            </div>
+            <div class="minicard">
+              <div style="display:flex;justify-content:space-between;font-size:10px;font-weight:800">
+                <span>ENEM 2026 · Engenharia de Computação</span>
+                <span style="color:var(--r)">78%</span>
+              </div>
+              <div class="bar" style="margin-top:8px"><i></i></div>
+            </div>
+            <div class="minicard">
+              <b style="font-size:11px">Recomendado para você</b>
+              <p style="font-size:10px;color:#666;margin:4px 0 0">🎓 5 faculdades compatíveis · 💰 3 bolsas abertas · 💬 4 estudantes da sua área online</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="como">
+    <h2>Como funciona o A.P.R.O.V.A Conecta</h2>
+    <p>Quatro etapas simples para sair da indecisão e construir um plano real até a universidade.</p>
+    <div class="steps">
+      <div class="step"><span class="n">01</span><h3>Crie seu perfil</h3><p>Conte um pouco sobre você, sua escola, cidade, objetivos e matérias que precisa reforçar.</p></div>
+      <div class="step"><span class="n">02</span><h3>Descubra seu perfil</h3><p>Faça nosso teste vocacional e acadêmico interativo em menos de 2 minutos.</p></div>
+      <div class="step"><span class="n">03</span><h3>Receba recomendações</h3><p>O sistema adapta cursos, faculdades, bolsas, notas de corte e conteúdos para o seu objetivo.</p></div>
+      <div class="step"><span class="n">04</span><h3>Prepare-se e conecte-se</h3><p>Siga seu cronograma, resolva questões e converse diretamente com outros estudantes cadastrados.</p></div>
+    </div>
+  </section>
+
+  <section class="section" id="sobre" style="background:#fff;border-top:1px solid var(--line)">
+    <h2>Os Diferenciais do A.P.R.O.V.A Conecta</h2>
+    <p>Desenvolvido por estudantes para transformar a jornada rumo à universidade com autonomia e colaboração real.</p>
+    <div class="features-grid">
+      <div class="card"><span class="tag">100% COLABORATIVO</span><h4>Conversas e Redes Criadas pelos Alunos</h4><p>Nenhum personagem pronto ou simulado: todas as postagens, mensagens e conexões são iniciadas organicamente pelos próprios estudantes reais.</p></div>
+      <div class="card"><span class="tag">SEM FRONTEIRAS</span><h4>Comunidades de Todo o Brasil</h4><p>Acesso livre para vestibulandos de qualquer estado, cidade ou escola (pública, privada ou ETEC) trocarem experiências sem barreiras geográficas.</p></div>
+      <div class="card"><span class="tag">SIMULADOS & CRONOGRAMA</span><h4>Prática Ativa por Matéria</h4><p>Banco completo de 11 disciplinas do Ensino Médio/ENEM com questões comentadas, cronograma diário e comparador de faculdades.</p></div>
+    </div>
+  </section>
+
+  <section class="darkband">
+    <div>
+      <h2>Você não precisa descobrir seu futuro sozinho.</h2>
+      <p>Crie sua conta gratuita, descubra sua afinidade profissional e conecte-se com outros vestibulandos.</p>
+    </div>
+    <button class="btn red" onclick="showAuth('signup')">Quero começar agora →</button>
+  </section>
+
+  <footer>
+    <b style="color:#fff">A.P.R.O.V.A Conecta</b>
+    <span>Apoio e Preparação para Resultados e Oportunidades em Vestibulares e Avaliações</span>
+    <span>Privacidade · Termos de Uso · Segurança · © 2026</span>
+  </footer>
+</div>
+
+<!-- AUTH (LOGIN / CADASTRO) -->
+<div id="auth" class="hidden">
+  <div class="auth"><div class="authbox" id="authbox"></div></div>
+</div>
+
+<!-- ONBOARDING & TESTE VOCACIONAL -->
+<div id="quiz" class="hidden">
+  <div class="auth">
+    <div class="authbox">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <span class="tag" id="qstep">Etapa 1 de 6</span>
+        <button class="ghost sm" onclick="landing()">Voltar ao início</button>
+      </div>
+      <div class="progressTop"><i id="qbar"></i></div>
+      <div id="qbody"></div>
+    </div>
+  </div>
+</div>
+
+<!-- APLICATIVO LOGADO -->
+<div id="app" class="app hidden">
+  <aside class="side">
+    <div class="brand" onclick="openApp('dashboard')" style="cursor:pointer">
+      <span class="mark">A</span>
+      <span class="brand-text">
+        <span class="brand-title">A.P.R.O.V.A <em>Conecta</em></span>
+        <span class="brand-sub" id="sideLevel">Nível: Explorador</span>
+      </span>
+    </div>
+
+    <div class="label">Principal</div>
+    <a data-page="dashboard" onclick="openApp('dashboard')">⌂ Dashboard</a>
+    <a data-page="studies" onclick="openApp('studies')">◈ Meu Plano de Estudos</a>
+    <a data-page="connect" onclick="openApp('connect')">◎ Feed Conecta</a>
+    <a data-page="messages" onclick="openApp('messages')">💬 Mensagens Diretas <span class="badge-count" id="chatBadge">2</span></a>
+
+    <div class="label">Explorar</div>
+    <a data-page="opps" onclick="openApp('opps')">✦ Oportunidades & Bolsas</a>
+    <a data-page="colleges" onclick="openApp('colleges')">🎓 Faculdades</a>
+    <a data-page="compare" onclick="openApp('compare')">⚖ Comparador</a>
+    <a data-page="communities" onclick="openApp('communities')">◉ Comunidades</a>
+    <a data-page="guide" onclick="openApp('guide')">▣ Guia do Ensino Superior</a>
+
+    <div class="label">Você</div>
+    <a data-page="profile" onclick="openApp('profile')">◯ Meu Perfil</a>
+    <a data-page="assistant" onclick="openApp('assistant')">✧ Meu A.P.R.O.V.A</a>
+    <a data-page="inbox" onclick="openApp('inbox')">📥 Caixa de Entrada <span class="badge-count" id="inboxBadge">0</span></a>
+    <a data-page="notifications" onclick="openApp('notifications')">🔔 Notificações <span class="badge-count" id="notifBadge">0</span></a>
+    <a data-page="settings" onclick="openApp('settings')">⚙ Configurações</a>
+    <a onclick="logout()">↪ Sair da conta</a>
+  </aside>
+
+  <div class="main">
+    <div class="topbar-app">
+      <span class="serverBadge online" id="serverBadge">● Ecossistema ativo • Verificador de E-mail Integrado</span>
+      <div style="display:flex;gap:8px;align-items:center">
+        <span class="pill" id="pointsPill">🏆 120 Pontos A.P.R.O.V.A</span>
+        <button class="btn light sm" onclick="openApp('inbox')">📥 Caixa de Entrada (<span id="inboxCountTop">0</span>)</button>
+        <button class="btn light sm" onclick="openApp('messages')">💬 Chat Estudantes</button>
+        <button class="btn red sm" onclick="startQuiz()">Refazer Teste Vocacional</button>
+      </div>
+    </div>
+
+    <!-- 1. DASHBOARD -->
+    <section class="page" id="p-dashboard">
+      <div class="welcome">
+        <div>
+          <h2 id="hello">Olá! 👋</h2>
+          <p>Vamos avançar mais um passo em direção ao seu futuro.</p>
+        </div>
+        <div style="display:flex;align-items:center;gap:12px">
+          <div style="text-align:right">
+            <b style="font-size:13px;display:block" id="dashAreaBadge">Tecnologia e Exatas</b>
+            <small class="muted" id="dashSchoolBadge">3º ano do Ensino Médio</small>
+          </div>
+          <div class="avatar red-av" id="topAvatar">A</div>
+        </div>
+      </div>
+
+      <div class="kpis">
+        <div class="kpi"><small>Estudos da semana</small><strong id="studyPct">0%</strong><span class="sub-kpi">meta personalizada</span></div>
+        <div class="kpi"><small>Questões resolvidas</small><strong id="questions">0</strong><span class="muted" style="font-size:11.5px">continue praticando</span></div>
+        <div class="kpi"><small>Aproveitamento</small><strong id="accuracy">—</strong><span class="muted" style="font-size:11.5px">taxa de acertos</span></div>
+        <div class="kpi"><small>Sequência ativa</small><strong id="streak">1 dia 🔥</strong><span class="sub-kpi" id="levelName">Nível Explorador</span></div>
+      </div>
+
+      <div class="grid2">
+        <div>
+          <div class="card">
+            <div style="display:flex;justify-content:space-between;align-items:center">
+              <h3>Seu objetivo acadêmico</h3>
+              <span class="tag">ENEM 2026</span>
+            </div>
+            <div class="card-sub" id="goalText">Buscar vaga em Engenharia de Computação</div>
+            <div class="goal">
+              <div class="goalrow"><span>Progresso da preparação</span><span style="color:var(--r)" id="goalPctText">78%</span></div>
+              <div class="bar" style="margin-top:10px"><i id="goalBar" style="width:78%"></i></div>
+            </div>
+          </div>
+
+          <div class="card" style="margin-top:16px">
+            <h3>Recomendado para você</h3>
+            <div class="card-sub">Atualizado automaticamente com base no seu perfil vocacional</div>
+            <div id="recommendations"></div>
+          </div>
+        </div>
+
+        <div>
+          <div class="card">
+            <div style="display:flex;justify-content:space-between;align-items:center">
+              <h3>Hoje no seu plano</h3>
+              <button class="ghost sm" onclick="openApp('studies')">Ver tudo →</button>
+            </div>
+            <div class="card-sub">Seu cronograma diário</div>
+            <div id="today"></div>
+          </div>
+
+          <div class="card" style="margin-top:16px">
+            <h3>Estudantes conectados</h3>
+            <div class="card-sub">Converse com colegas que têm objetivos parecidos</div>
+            <div id="dashPeers"></div>
+            <button class="btn light" style="width:100%;margin-top:10px" onclick="openApp('messages')">Abrir bate-papo →</button>
+          </div>
+
+          <div class="card" style="margin-top:16px;background:#111214;color:#fff">
+            <span class="tag">ASSISTENTE IA</span>
+            <h3 style="margin-top:10px">Meu A.P.R.O.V.A ✦</h3>
+            <p style="color:#b8bcc4;font-size:12.5px">Tire dúvidas sobre notas de corte, SISU, PROUNI, redação ou o que estudar hoje.</p>
+            <button class="btn red" onclick="openApp('assistant')">Conversar agora</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. PLANO DE ESTUDOS & CATÁLOGO DE MATÉRIAS -->
+    <section class="page" id="p-studies">
+      <div class="welcome">
+        <div>
+          <h2>Meu Plano de Estudos & Matérias</h2>
+          <p>Explore todas as disciplinas do Ensino Médio e ENEM, pratique simulados por matéria e monte seu cronograma.</p>
+        </div>
+        <button class="btn red" onclick="addTask()">+ Nova tarefa no cronograma</button>
+      </div>
+
+      <div class="card" style="margin-top:20px">
+        <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px">
+          <div>
+            <h3>Catálogo Completo de Matérias (ENEM & Vestibulares)</h3>
+            <div class="card-sub" style="margin-bottom:0">Clique em "Praticar agora" para iniciar uma bateria de questões comentadas ou adicione ao seu plano</div>
+          </div>
+          <div class="filters" id="subjectAreaFilters" style="margin:0">
+            <button class="pill active-pill" onclick="filterSubjectsGrid('all',this)">Todas (11)</button>
+            <button class="pill" onclick="filterSubjectsGrid('Exatas',this)">Exatas</button>
+            <button class="pill" onclick="filterSubjectsGrid('Natureza',this)">Natureza</button>
+            <button class="pill" onclick="filterSubjectsGrid('Linguagens',this)">Linguagens</button>
+            <button class="pill" onclick="filterSubjectsGrid('Humanas',this)">Humanas</button>
+          </div>
+        </div>
+        <div class="cards3" id="subjectsCatalogGrid" style="margin-top:18px"></div>
+      </div>
+
+      <div class="card" style="margin-top:20px">
+        <h3>Cronograma Diário Personalizado</h3>
+        <div class="filters" id="studyFilters">
+          <button class="pill active-pill" onclick="filterTasks('all',this)">Todas as tarefas</button>
+          <button class="pill" onclick="filterTasks('pending',this)">Pendentes</button>
+          <button class="pill" onclick="filterTasks('done',this)">Concluídas</button>
+        </div>
+        <div id="taskList"></div>
+      </div>
+    </section>
+
+    <!-- 3. FEED CONECTA -->
+    <section class="page" id="p-connect">
+      <div class="welcome">
+        <div>
+          <h2>Conecta</h2>
+          <p>Compartilhe conquistas, dúvidas e materiais com outros estudantes.</p>
+        </div>
+        <button class="btn red" onclick="openApp('messages')">💬 Mensagens Diretas</button>
+      </div>
+
+      <div class="connect-layout">
+        <div>
+          <div class="card" style="margin-bottom:16px">
+            <b>Criar publicação na rede</b>
+            <textarea id="quickPostInput" class="search" rows="3" style="margin-top:10px;resize:vertical" placeholder="Compartilhe uma dica de estudo, dúvida do ENEM ou conquista..."></textarea>
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-top:10px;flex-wrap:wrap;gap:8px">
+              <select id="quickPostGroup" class="pill" style="border:1px solid var(--line);background:#fff">
+                <option value="Minha Jornada">Minha Jornada</option>
+                <option value="Dúvidas ENEM 2026">Dúvidas ENEM 2026</option>
+                <option value="Resumos & Materiais">Resumos & Materiais</option>
+                <option value="Aprovações & SISU">Aprovações & SISU</option>
+              </select>
+              <button class="btn red sm" onclick="publishQuickPost()">Publicar agora</button>
+            </div>
+          </div>
+          <div id="feed"></div>
+        </div>
+
+        <div>
+          <div class="card">
+            <h3>Estudantes para conectar</h3>
+            <div class="card-sub">Perfis cadastrados na plataforma</div>
+            <div id="connectDirectory"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. MENSAGENS DIRETAS (CHAT ENTRE USUÁRIOS CADASTRADOS) -->
+    <section class="page" id="p-messages">
+      <div class="welcome">
+        <div>
+          <h2>Mensagens Diretas</h2>
+          <p>Conecte-se e converse em tempo real com outros estudantes cadastrados no A.P.R.O.V.A.</p>
+        </div>
+      </div>
+
+      <div class="chat-shell">
+        <div class="chat-users">
+          <div class="chat-users-head">
+            <input class="search" id="chatSearchUser" placeholder="🔎 Buscar estudante ou curso..." oninput="renderChatSidebar()">
+          </div>
+          <div class="chat-user-list" id="chatUserList"></div>
+        </div>
+
+        <div class="chat-window" id="chatWindow">
+          <div class="empty" style="margin:auto">Selecione um estudante ao lado para iniciar uma conversa.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. OPORTUNIDADES -->
+    <section class="page" id="p-opps">
+      <div class="welcome">
+        <div>
+          <h2>Oportunidades & Bolsas</h2>
+          <p>Programas de acesso, bolsas de estudo, vestibulares e cursos gratuitos.</p>
+        </div>
+      </div>
+      <div class="filters" id="oppFilters">
+        <button class="pill active-pill" onclick="filterOpp('all',this)">Todas</button>
+        <button class="pill" onclick="filterOpp('bolsa',this)">Bolsas & Programas</button>
+        <button class="pill" onclick="filterOpp('vest',this)">Vestibulares & ENEM</button>
+        <button class="pill" onclick="filterOpp('curso',this)">Cursos gratuitos</button>
+      </div>
+      <div class="cards3" id="oppGrid"></div>
+    </section>
+
+    <!-- 6. FACULDADES -->
+    <section class="page" id="p-colleges">
+      <div class="welcome">
+        <div>
+          <h2>Faculdades & Universidades</h2>
+          <p>Pesquise instituições, veja notas de corte estimadas e salve para comparar.</p>
+        </div>
+        <button class="btn light" onclick="openApp('compare')">⚖ Ir para Comparador</button>
+      </div>
+      <div class="card" style="margin:18px 0">
+        <div class="row">
+          <input class="search" id="collegeSearch" placeholder="🔎 Buscar por curso, instituição ou cidade..." oninput="renderColleges()">
+          <select class="search" id="collegeTypeFilter" onchange="renderColleges()">
+            <option value="all">Todas (Públicas e Privadas)</option>
+            <option value="Pública">Somente Públicas</option>
+            <option value="Privada">Somente Privadas</option>
+          </select>
+        </div>
+      </div>
+      <div class="cards3" id="collegeGrid"></div>
+    </section>
+
+    <!-- 7. COMPARADOR -->
+    <section class="page" id="p-compare">
+      <div class="welcome">
+        <div>
+          <h2>Compare suas opções</h2>
+          <p>Análise lado a lado das faculdades que você salvou.</p>
+        </div>
+        <button class="btn light" onclick="openApp('colleges')">+ Adicionar faculdades</button>
+      </div>
+      <div class="card" style="margin-top:20px;overflow-x:auto">
+        <div id="compareBox"></div>
+      </div>
+    </section>
+
+    <!-- 8. COMUNIDADES -->
+    <section class="page" id="p-communities">
+      <div class="welcome">
+        <div>
+          <h2>Comunidades Temáticas</h2>
+          <p>Grupos organizados por curso, vestibular e região.</p>
+        </div>
+      </div>
+      <div class="cards3" style="margin-top:20px" id="communityGrid"></div>
+    </section>
+
+    <!-- 9. GUIA DO ENSINO SUPERIOR -->
+    <section class="page" id="p-guide">
+      <div class="welcome">
+        <div>
+          <h2>Entenda antes de escolher</h2>
+          <p>Explicações diretas e sem complicação sobre o ingresso na faculdade.</p>
+        </div>
+      </div>
+      <div class="cards3" style="margin-top:20px">
+        <div class="card"><span class="tag">ENEM</span><h4>Exame Nacional do Ensino Médio</h4><p>Principal porta de entrada para universidades públicas e programas de bolsas no Brasil.</p><button class="btn light sm" onclick="guideAnswer('enem')">Entender em 1 minuto →</button></div>
+        <div class="card"><span class="tag">SISU</span><h4>Sistema de Seleção Unificada</h4><p>Usa sua nota do ENEM para disputar vagas em universidades e institutos federais/estaduais.</p><button class="btn light sm" onclick="guideAnswer('sisu')">Entender em 1 minuto →</button></div>
+        <div class="card"><span class="tag">PROUNI</span><h4>Bolsas de 50% e 100%</h4><p>Concede bolsas integrais e parciais em faculdades privadas com base na nota do ENEM e renda.</p><button class="btn light sm" onclick="guideAnswer('prouni')">Entender em 1 minuto →</button></div>
+        <div class="card"><span class="tag">FIES</span><h4>Financiamento Estudantil</h4><p>Financia a graduação em instituições privadas com condições facilitadas após a formatura.</p><button class="btn light sm" onclick="guideAnswer('fies')">Entender em 1 minuto →</button></div>
+        <div class="card"><span class="tag">GRAUS</span><h4>Bacharelado, Licenciatura e Tecnólogo</h4><p>Entenda a duração e o foco profissional de cada tipo de graduação antes de escolher.</p><button class="btn light sm" onclick="guideAnswer('curso')">Entender em 1 minuto →</button></div>
+        <div class="card"><span class="tag">DECISÃO</span><h4>Como escolher sua faculdade?</h4><p>Checklist prático avaliando nota do MEC, grade curricular, custos, distância e mercado.</p><button class="btn light sm" onclick="guideAnswer('escolha')">Ver checklist →</button></div>
+      </div>
+      <div id="guideBox" class="card hidden" style="margin-top:18px;border-left:4px solid var(--r)"></div>
+    </section>
+
+    <!-- 10. PERFIL DO ESTUDANTE -->
+    <section class="page" id="p-profile">
+      <div class="card" style="padding:0;overflow:hidden">
+        <div style="height:130px;background:linear-gradient(120deg,#111214 55%,#d71920 140%)"></div>
+        <div style="padding:0 26px 26px">
+          <div style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:12px">
+            <div class="avatar red-av" style="width:84px;height:84px;margin-top:-42px;border:5px solid #fff;font-size:28px" id="profileAvatar">A</div>
+            <button class="btn light sm" onclick="startQuiz()">Atualizar perfil vocacional</button>
+          </div>
+          <h2 id="profileName" style="margin:12px 0 4px">Estudante</h2>
+          <p class="muted" id="profileInfo" style="margin:0 0 12px"></p>
+          <div id="profileChips" style="display:flex;flex-wrap:wrap;gap:7px"></div>
+        </div>
+      </div>
+
+      <div class="grid2" style="margin-top:16px">
+        <div class="card">
+          <h3>Minha Jornada Acadêmica</h3>
+          <div class="card-sub">Acompanhe cada marco até a universidade</div>
+          <div class="journey">
+            <div><div class="jdot on">✓</div><small><b>Ensino Médio</b></small></div>
+            <div><div class="jdot on">●</div><small><b>ENEM 2026</b></small></div>
+            <div><div class="jdot">3</div><small>Vestibular</small></div>
+            <div><div class="jdot">4</div><small>Faculdade</small></div>
+            <div><div class="jdot">5</div><small>Carreira</small></div>
+          </div>
+
+          <h3 style="margin-top:26px">Conquistas & Gamificação</h3>
+          <div class="achievements-grid" id="achievementsGrid"></div>
+        </div>
+
+        <div class="card">
+          <h3>Afinidade Vocacional</h3>
+          <div class="card-sub">Resultado orientativo do seu teste</div>
+          <div id="profileAffinityBars"></div>
+          <p class="muted" style="margin-top:14px;font-size:11.5px">* Este resultado tem caráter orientativo e ajuda a sugerir cursos e conteúdos compatíveis.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 11. ASSISTENTE MEU A.P.R.O.V.A -->
+    <section class="page" id="p-assistant">
+      <div class="welcome">
+        <div>
+          <h2>Meu A.P.R.O.V.A ✦</h2>
+          <p>Seu assistente acadêmico personalizado.</p>
+        </div>
+      </div>
+      <div class="card" style="max-width:860px;margin-top:20px">
+        <div style="background:#111214;color:#fff;padding:22px;border-radius:15px">
+          <span class="tag">ORIENTAÇÃO INTELIGENTE</span>
+          <h3 style="margin:10px 0 4px">Como posso ajudar você hoje?</h3>
+          <p style="color:#b8bcc4;font-size:12.5px;margin:0">Clique em uma pergunta rápida ou digite sua dúvida abaixo.</p>
+        </div>
+        <div class="filters">
+          <button class="pill" onclick="answer('faculdades')">Quais faculdades combinam comigo?</button>
+          <button class="pill" onclick="answer('estudar')">O que devo estudar hoje?</button>
+          <button class="pill" onclick="answer('sisu')">Como funciona o SISU?</button>
+          <button class="pill" onclick="answer('prouni')">Tenho direito ao PROUNI?</button>
+          <button class="pill" onclick="answer('redacao')">Como melhorar minha redação?</button>
+        </div>
+        <div id="answerBox" class="card hidden" style="margin-top:12px;background:#f7f8fa;border-left:4px solid var(--r)"></div>
+        <div style="display:flex;gap:9px;margin-top:16px">
+          <input class="search" id="ask" placeholder="Ex: Quais cursos combinam com meu perfil? Como funciona o FIES?" onkeydown="if(event.key==='Enter')ask()">
+          <button class="btn red" onclick="ask()">Perguntar</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 11.5 CAIXA DE ENTRADA DO USUÁRIO (NOVO) -->
+    <section class="page" id="p-inbox">
+      <div class="welcome">
+        <div>
+          <h2>Caixa de Entrada</h2>
+          <p>E-mails e confirmações enviadas para o seu endereço cadastrado (<span id="userEmailDisplay">seu@email.com</span>).</p>
+        </div>
+        <button class="btn red sm" onclick="sendTestWelcomeEmail()">Enviar e-mail de boas-vindas teste</button>
+      </div>
+      <div class="card" style="margin-top:20px" id="inboxList"></div>
+    </section>
+
+    <!-- 12. ATIVIDADE / SIMULADO -->
+    <section class="page" id="p-activity">
+      <div class="welcome">
+        <div>
+          <h2 id="activityTitle">Atividade</h2>
+          <p id="activityMeta">Resolva as questões e acompanhe seu aproveitamento.</p>
+        </div>
+        <button class="btn light" onclick="openApp('studies')">← Voltar ao plano</button>
+      </div>
+      <div class="card" style="max-width:860px;margin-top:20px">
+        <div class="activityTop">
+          <span class="tag" id="activitySubject">MATEMÁTICA</span>
+          <span id="activityCounter">Questão 1 de 5</span>
+        </div>
+        <div class="progressTop"><i id="activityBar" style="width:20%"></i></div>
+        <div id="activityBody"></div>
+      </div>
+    </section>
+
+    <!-- 13. NOTIFICAÇÕES -->
+    <section class="page" id="p-notifications">
+      <div class="welcome">
+        <div>
+          <h2>Notificações</h2>
+          <p>Alertas de prazos, estudos, mensagens e oportunidades.</p>
+        </div>
+        <button class="btn light" onclick="markNotificationsRead()">Marcar todas como lidas</button>
+      </div>
+      <div class="card" style="margin-top:20px" id="notificationList"></div>
+    </section>
+
+    <!-- 14. CONFIGURAÇÕES -->
+    <section class="page" id="p-settings">
+      <div class="welcome">
+        <div>
+          <h2>Configurações & Privacidade</h2>
+          <p>Gerencie a visibilidade do seu perfil e seus dados na plataforma.</p>
+        </div>
+      </div>
+      <div class="card" style="max-width:780px;margin-top:20px">
+        <div class="task">
+          <b>Perfil público</b>
+          <div class="muted">Permitir que outros estudantes cadastrados encontrem você no diretório e enviem mensagens.</div>
+          <button class="check" id="publicToggle" onclick="toggleSetting('publicProfile')"></button>
+        </div>
+        <div class="task">
+          <b>Notificações de estudo e prazos</b>
+          <div class="muted">Receber lembretes de tarefas diárias e fechamento de inscrições.</div>
+          <button class="check" id="notifToggle" onclick="toggleSetting('notifications')"></button>
+        </div>
+        <div style="margin-top:22px;padding-top:18px;border-top:1px solid var(--line);display:flex;flex-wrap:wrap;gap:10px">
+          <button class="btn light" onclick="exportData()">Exportar meus dados (.JSON)</button>
+          <button class="btn red" onclick="resetDemo()">Restaurar dados de demonstração</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 15. DETALHES FACULDADE -->
+    <section class="page" id="p-college-detail">
+      <div class="welcome">
+        <div>
+          <h2 id="detailCollegeName">Faculdade</h2>
+          <p id="detailCollegeMeta"></p>
+        </div>
+        <button class="btn light" onclick="openApp('colleges')">← Voltar</button>
+      </div>
+      <div class="grid2" style="margin-top:20px">
+        <div class="card">
+          <span class="tag">INSTITUIÇÃO</span>
+          <h3 id="detailCourse" style="margin-top:10px">Curso</h3>
+          <p id="detailDesc"></p>
+          <div class="goal">
+            <b>Formas de ingresso & Notas de corte estimadas</b>
+            <p id="detailInfo" style="margin-bottom:0"></p>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Sua decisão</h3>
+          <p class="muted">Salve esta instituição para comparar critérios lado a lado.</p>
+          <button class="btn red" id="detailSaveBtn">☆ Salvar faculdade</button>
+          <button class="btn light" style="margin-left:7px" onclick="openApp('compare')">⚖ Comparar</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 16. DETALHES OPORTUNIDADE -->
+    <section class="page" id="p-opp-detail">
+      <div class="welcome">
+        <div>
+          <h2 id="detailOppName">Oportunidade</h2>
+          <p id="detailOppMeta"></p>
+        </div>
+        <button class="btn light" onclick="openApp('opps')">← Voltar</button>
+      </div>
+      <div class="card" style="margin-top:20px;max-width:850px">
+        <span class="tag" id="detailOppTag">OPORTUNIDADE</span>
+        <h3 id="detailOppTitle" style="margin-top:10px"></h3>
+        <p id="detailOppDesc"></p>
+        <div class="goal">
+          <b>Atenção aos canais oficiais</b>
+          <p style="margin-bottom:0">Sempre confirme datas, editais, documentação exigida e critérios socioeconômicos diretamente no portal oficial da instituição ou do MEC.</p>
+        </div>
+        <div style="margin-top:16px">
+          <button class="btn red" id="detailOppSave">☆ Salvar oportunidade</button>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- BARRA MOBILE -->
+  <div class="mobilebar">
+    <button class="on" onclick="openApp('dashboard')">⌂<span>Início</span></button>
+    <button onclick="openApp('studies')">◈<span>Estudos</span></button>
+    <button onclick="openApp('connect')">◎<span>Conecta</span></button>
+    <button onclick="openApp('messages')">💬<span>Chat</span></button>
+    <button onclick="openApp('profile')">◯<span>Perfil</span></button>
+  </div>
+</div>
+
+<script>
+const SESSION_KEY = 'aprova_conecta_v4_session';
+const DB_KEY = 'aprova_conecta_v5_db';
+const DEMO_EMAIL = 'estudante@aprova.local';
+
+let state = {
+  logged: false,
+  user: null,
+  quiz: null,
+  tasks: [],
+  posts: [],
+  notifications: [],
+  inbox: [],
+  performance: { questions: 0, correct: 0 },
+  settings: { publicProfile: true, notifications: true }
+};
+
+let qi = 0;
+let answers = [];
+let activity = null;
+let activeChatPeerId = null;
+let taskFilter = 'all';
+
+function storeGet(key) {
+  try {
+    const v = localStorage.getItem(key);
+    if (v !== null) return v;
+  } catch (e) {}
+  try {
+    const raw = window.name || '';
+    if (raw.startsWith('APROVA_V4:')) {
+      const db = JSON.parse(raw.slice(10));
+      return Object.prototype.hasOwnProperty.call(db, key) ? db[key] : null;
+    }
+  } catch (e) {}
+  return null;
+}
+
+function storeSet(key, value) {
+  try {
+    localStorage.setItem(key, value);
+    return true;
+  } catch (e) {}
+  try {
+    let db = {};
+    const raw = window.name || '';
+    if (raw.startsWith('APROVA_V4:')) db = JSON.parse(raw.slice(10));
+    db[key] = value;
+    window.name = 'APROVA_V4:' + JSON.stringify(db);
+    return true;
+  } catch (e) {
+    return false;
+  }
+}
+
+function uid() {
+  return 'id-' + Date.now().toString(36) + '-' + Math.random().toString(36).slice(2, 7);
+}
+
+function escapeHtml(s) {
+  return String(s ?? '').replace(/[&<>'"]/g, c => ({
+    '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;'
+  }[c]));
+}
+
+function toast(msg) {
+  const el = document.createElement('div');
+  el.className = 'toast';
+  el.textContent = msg;
+  document.body.appendChild(el);
+  setTimeout(() => el.remove(), 2600);
+}
+
+/* VERIFICADOR DE E-MAIL ROBUSTO */
+function validateEmail(email) {
+  if (!email || typeof email !== 'string') return { valid: false, reason: 'E-mail vazio ou inválido.' };
+  
+  const clean = email.trim().toLowerCase();
+  
+  // 1. Regex de estrutura básica
+  const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+  if (!regex.test(clean)) {
+    return { valid: false, reason: 'Formato inválido. O e-mail deve conter "@" e um domínio válido (ex: .com, .br).' };
+  }
+
+  // 2. Erros comuns de digitação em domínios ou formatos
+  const parts = clean.split('@');
+  if (parts.length !== 2) return { valid: false, reason: 'O e-mail deve possuir exatamente um caractere "@".' };
+  
+  const [localPart, domain] = parts;
+  if (!localPart) return { valid: false, reason: 'Falta o nome de usuário antes do "@".' };
+  if (!domain || !domain.includes('.')) return { valid: false, reason: 'Domínio do e-mail incompleto ou inválido.' };
+
+  // Domínios manifestamente falsos ou testes comuns
+  const fakeDomains = ['teste.com', 'abc.com', 'email.com', '123.com', 'asdf.com', 'foo.com', 'bar.com'];
+  if (fakeDomains.includes(domain)) {
+    return { valid: false, reason: `O domínio "${domain}" parece ser um endereço de teste fictício. Insira seu e-mail real.` };
+  }
+
+  // Erros frequentes de digitação (typos)
+  const commonTypos = {
+    'gamil.com': 'gmail.com',
+    'gmal.com': 'gmail.com',
+    'gmai.com': 'gmail.com',
+    'hotmial.com': 'hotmail.com',
+    'hotmai.com': 'hotmail.com',
+    'outlok.com': 'outlook.com',
+    'yahor.com': 'yahoo.com'
+  };
+
+  if (commonTypos[domain]) {
+    return { valid: false, reason: `Você quis dizer @${commonTypos[domain]}? Verifique o domínio digitado.` };
+  }
+
+  return { valid: true, clean };
+}
+
+/* BANCO DE QUESTÕES */
+const QUESTION_BANK = {
+  'Matemática': [
+    ['Se f(x) = 2x + 3, qual é o valor de f(4)?', ['7', '8', '11', '12', '14'], 2, 'Substituindo x = 4: 2(4) + 3 = 8 + 3 = 11.'],
+    ['Qual é a raiz da equação x − 5 = 0?', ['−5', '0', '1', '5', '10'], 3, 'Isolando x, temos x = 5.'],
+    ['Quanto é 20% de 150?', ['15', '20', '25', '30', '35'], 3, '0,20 × 150 = 30.'],
+    ['A área de um retângulo de 8 cm por 5 cm é:', ['13 cm²', '26 cm²', '40 cm²', '45 cm²', '80 cm²'], 2, 'Área = base × altura = 8 × 5 = 40 cm².'],
+    ['Na sequência 2, 4, 8, 16, o próximo termo é:', ['18', '20', '24', '30', '32'], 4, 'Progressão geométrica de razão 2: 16 × 2 = 32.']
+  ],
+  'Física': [
+    ['A unidade de velocidade no Sistema Internacional (SI) é:', ['N', 'J', 'm/s', 'kg', 'W'], 2, 'No SI, distância é em metros (m) e tempo em segundos (s): m/s.'],
+    ['Se um carro percorre 100 m em 20 s, sua velocidade média é:', ['2 m/s', '5 m/s', '10 m/s', '20 m/s', '50 m/s'], 1, 'Vm = ΔS / Δt = 100 / 20 = 5 m/s.'],
+    ['A força resultante sobre um corpo é nula quando:', ['Ele sempre acelera', 'As forças atuantes se equilibram', 'Sua massa é zero', 'Sua velocidade é zero', 'A energia é máxima'], 1, 'Pela 1ª Lei de Newton, forças equilibradas geram resultante zero.'],
+    ['A unidade de força no SI é:', ['Joule', 'Newton', 'Watt', 'Pascal', 'Volt'], 1, 'Força é medida em Newtons (N).'],
+    ['Na queda livre sem resistência do ar, a aceleração:', ['É zero', 'É constante e vertical para baixo', 'É horizontal', 'Depende da cor do objeto', 'Aumenta infinitamente'], 1, 'A aceleração da gravidade é aproximadamente constante (g ≈ 9,8 m/s²).']
+  ],
+  'Química': [
+    ['Qual é o número atômico do Carbono (C)?', ['4', '6', '8', '12', '14'], 1, 'O carbono possui 6 prótons no núcleo (Z = 6), sendo a base da Química Orgânica.'],
+    ['Uma solução com pH = 2 em temperatura ambiente (25 °C) é classificada como:', ['Neutra', 'Básica', 'Ácida', 'Salina', 'Anfótera'], 2, 'Valores de pH abaixo de 7 indicam meio ácido.'],
+    ['A ligação química formada pelo compartilhamento de pares de elétrons é chamada de:', ['Ligação iônica', 'Ligação metálica', 'Ligação covalente', 'Força de London', 'Ponte salina'], 2, 'Na ligação covalente, átomos compartilham elétrons para atingir estabilidade.'],
+    ['A mudança de estado físico diretamente do sólido para o gasoso chama-se:', ['Fusão', 'Condensação', 'Solidificação', 'Sublimação', 'Ebulição'], 3, 'A sublimação ocorre sem passagem pela fase líquida (ex: gelo seco).'],
+    ['Qual gás é o principal responsável pelo efeito estufa intensificado pela queima de combustíveis fósseis?', ['Oxigênio (O₂)', 'Gás Carbônico (CO₂)', 'Hélio (He)', 'Argônio (Ar)', 'Hidrogênio (H₂)'], 1, 'O dióxido de carbono (CO₂) retém radiação infravermelha na atmosfera.']
+  ],
+  'Biologia': [
+    ['Qual organela celular é responsável pela respiração celular e produção de ATP?', ['Ribossomo', 'Lisossomo', 'Mitocôndria', 'Complexo de Golgi', 'Centríolo'], 2, 'As mitocôndrias realizam a respiração celular aeróbica gerando ATP.'],
+    ['Na molécula de DNA, a base nitrogenada Adenina (A) pareia-se especificamente com:', ['Citosina (C)', 'Guanina (G)', 'Timina (T)', 'Uracila (U)', 'Adenina (A)'], 2, 'No DNA ocorre o pareamento A–T e C–G.'],
+    ['Organismos capazes de produzir seu próprio alimento por fotossíntese são chamados de:', ['Heterótrofos', 'Decompositores', 'Autótrofos', 'Parasitas', 'Consumidores terciários'], 2, 'Autótrofos sintetizam matéria orgânica a partir de substâncias inorgânicas.'],
+    ['Qual é o vetor transmissor do vírus da dengue?', ['Anopheles', 'Aedes aegypti', 'Triatoma infestans', 'Culex', 'Lutzomyia'], 1, 'A fêmea do mosquito Aedes aegypti transmite dengue, zika e chikungunya.'],
+    ['A relação ecológica em que ambas as espécies se beneficiam de forma obrigatória é:', ['Parasitismo', 'Amensalismo', 'Mutualismo', 'Competição', 'Predatismo'], 2, 'No mutualismo há benefício mútuo e interdependência (ex: líquens).']
+  ],
+  'Português': [
+    ['Na frase "Vende-se esta casa", o sujeito da oração é:', ['Indeterminado', 'Oculto', 'Esta casa (sujeito paciente)', 'Inexistente', 'Composto'], 2, 'Com verbo transitivo direto + partícula apassivadora "se", "esta casa" é sujeito paciente ("Esta casa é vendida").'],
+    ['Qual figura de linguagem ocorre em "Aquele estudante é um leão nos simulados"?', ['Metonímia', 'Metáfora', 'Antítese', 'Eufemismo', 'Pleonasmo'], 1, 'Há comparação implícita sem conectivo comparativo, caracterizando metáfora.'],
+    ['O movimento literário brasileiro marcado pelo nacionalismo e indianismo no século XIX foi o:', ['Barroco', 'Arcadismo', 'Romantismo', 'Parnasianismo', 'Concretismo'], 2, 'A primeira geração do Romantismo no Brasil exaltou a natureza e o indígena.'],
+    ['Assinale a alternativa em que o uso da crase está correto:', ['Fui à pé para a escola.', 'Entreguei o resumo à professora.', 'Começou à estudar cedo.', 'Refiro-me à ele.', 'Voltei à casa cansado (sem especificar).'], 1, 'Quem entrega, entrega algo a alguém (preposição "a" + artigo feminino "a" antes de "professora").'],
+    ['A função da linguagem centrada no emissor e em suas emoções é a:', ['Referencial', 'Fática', 'Metalinguística', 'Emotiva (expressiva)', 'Conativa'], 3, 'A função emotiva destaca sentimentos e subjetividade em 1ª pessoa.']
+  ],
+  'Redação': [
+    ['Na redação dissertativo-argumentativa do ENEM, a tese representa:', ['A lista de citações', 'O ponto de vista central defendido pelo autor', 'A proposta de intervenção', 'O título obrigatório', 'Um resumo dos dados'], 1, 'A tese apresenta claramente o posicionamento que será defendido nos parágrafos de desenvolvimento.'],
+    ['Os conectivos (coesão sequencial) servem principalmente para:', ['Aumentar o tamanho das palavras', 'Articular ideias e estabelecer relações lógicas', 'Substituir a conclusão', 'Evitar argumentos', 'Criar rimas'], 1, 'Conectivos como "além disso", "portanto" e "entretanto" garantem progressão lógica.'],
+    ['Um repertório sociocultural é legitimado e produtivo quando:', ['É apenas decorativo', 'Tem relação pertinente com o tema e é articulado ao argumento', 'Aparece apenas no título', 'Substitui a tese', 'É uma gíria'], 1, 'A banca avalia se o repertório está conectado à discussão proposta.'],
+    ['Uma proposta de intervenção completa no ENEM deve conter:', ['Apenas uma frase motivacional', 'Agente, ação, meio/modo, finalidade e detalhamento', 'Somente o nome do governo', 'Uma pergunta retórica', 'Novos problemas'], 1, 'São os 5 elementos avaliados na Competência 5 do ENEM.'],
+    ['Um parágrafo de desenvolvimento consistente combina:', ['Tópico frasal + fundamentação/repertório + análise crítica', 'Apenas opinião pessoal', 'Somente exemplos sem explicação', 'Título + pergunta', 'Frases soltas'], 0, 'Essa estrutura garante clareza argumentativa na Competência 3.']
+  ],
+  'História': [
+    ['A assinatura da Lei Áurea, que aboliu formalmente a escravidão no Brasil, ocorreu em:', ['1822', '1850', '1888', '1889', '1930'], 2, 'A Lei Áurea foi assinada em 13 de maio de 1888, após intensa pressão abolicionista.'],
+    ['A Revolução Industrial teve início na segunda metade do século XVIII principalmente na:', ['França', 'Alemanha', 'Inglaterra', 'Itália', 'Rússia'], 2, 'A Inglaterra reunia capitais, carvão, ferro, mão de obra e estabilidade política.'],
+    ['O período entre 1937 e 1945 no governo de Getúlio Vargas ficou conhecido como:', ['República da Espada', 'Estado Novo', 'República Velha', 'Regência Trina', 'Nova República'], 1, 'O Estado Novo foi o regime ditatorial instaurado por Vargas em 1937.'],
+    ['A queda do Muro de Berlim em 1989 simbolizou:', ['O início da Primeira Guerra', 'O fim simbólico da Guerra Fria e da divisão bipolar', 'A criação da ONU', 'A Revolução Francesa', 'A crise de 1929'], 1, 'Marcou o colapso do bloco socialista no Leste Europeu e o fim da Guerra Fria.'],
+    ['Na Atenas Clássica, a democracia caracterizava-se por ser:', ['Representativa e universal', 'Direta, porém restrita aos cidadãos homens adultos atenienses', 'Monárquica', 'Baseada no voto feminino', 'Feudal'], 1, 'Mulheres, escravizados e estrangeiros (metecos) eram excluídos da cidadania.']
+  ],
+  'Geografia': [
+    ['O processo de crescimento acelerado das cidades em ritmo superior à infraestrutura urbana denomina-se:', ['Conurbação', 'Macrocefalia urbana', 'Gentrificação', 'Êxodo urbano', 'Assoreamento'], 1, 'A macrocefalia urbana gera déficits de transporte, moradia e saneamento.'],
+    ['Qual bioma brasileiro ocupa a maior parte da região Central do país e possui vegetação adaptada ao fogo e solos ácidos?', ['Caatinga', 'Pampa', 'Cerrado', 'Pantanal', 'Mata de Araucárias'], 2, 'O Cerrado é a savana mais biodiversa do mundo e berço de grandes bacias hidrográficas.'],
+    ['As placas tectônicas movimentam-se devido às correntes de convecção presentes no:', ['Núcleo interno sólido', 'Manto terrestre (astenosfera)', 'Troposfera', 'Exosfera', 'Litosfera oceânica fixa'], 1, 'O calor interno da Terra gera correntes de convecção no manto que deslocam das placas.'],
+    ['O fenômeno das "ilhas de calor" ocorre com maior intensidade em áreas:', ['Florestais densas', 'Altamente urbanizadas e impermeabilizadas', 'Polares', 'Rurais de baixa densidade', 'Oceânicas'], 1, 'Asfalto, concreto e pouca vegetação aumentam a retenção de calor nas metrópoles.'],
+    ['A globalização contemporânea apoia-se fortemente na integração dos fluxos de:', ['Apenas transporte marítimo a vela', 'Informação, capitais financeiros e cadeias produtivas', 'Feudalismo agrário', 'Isolamento alfandegário total', 'Escambo local'], 1, 'Redes digitais e telecomunicações aceleraram os fluxos globais de capital e dados.']
+  ],
+  'Filosofia': [
+    ['A frase "Só sei que nada sei" é atribuída a qual filósofo da Grécia Antiga?', ['Aristóteles', 'Sócrates', 'Descartes', 'Nietzsche', 'Kant'], 1, 'Sócrates utilizava a ironia e a maiêutica para estimular o autoconhecimento e a busca pela verdade.'],
+    ['Para René Descartes, o ponto de partida indubitável do conhecimento racional é expresso por:', ['"O homem é a medida de todas as coisas"', '"Penso, logo existo"', '"O homem é um animal político"', '"A existência precede a essência"', '"Deus está morto"'], 1, 'O cogito cartesiano fundamenta o racionalismo moderno.'],
+    ['Na filosofia de Immanuel Kant, o "imperativo categórico" refere-se a:', ['Um cálculo de prazer individual', 'Uma lei moral universal baseada no dever e na razão', 'Uma regra religiosa específica', 'O instinto biológico', 'A vontade do governante'], 1, 'Para Kant, devemos agir segundo máximas que possam tornar-se leis universais.']
+  ],
+  'Sociologia': [
+    ['Para Émile Durkheim, o objeto de estudo da Sociologia são os:', ['Tipos ideais', 'Fatos sociais (dotados de coerção, exterioridade e generalidade)', 'Meios de produção apenas', 'Instintos psicológicos', 'Mitos antigos'], 1, 'Durkheim definiu os fatos sociais como maneiras de agir, pensar e sentir externas ao indivíduo.'],
+    ['O conceito de "indústria cultural", elaborado por Adorno e Horkheimer, critica:', ['O artesanato indígena', 'A padronização e mercantilização da cultura em massa', 'A educação pública gratuita', 'A preservação ambiental', 'A ciência experimental'], 1, 'Os autores da Escola de Frankfurt analisaram como a cultura passou a ser produzida como mercadoria.'],
+    ['Na sociologia de Max Weber, a "ação social" is compreendida a partir:', ['Do sentido subjetivo atribuído pelo agente em relação aos outros', 'Apenas da luta de classes econômica', 'De leis biológicas', 'Da geografia física', 'Do acaso estatístico'], 0, 'Weber propôs a sociologia compreensiva focada no sentido das ações sociais.']
+  ],
+  'Inglês': [
+    ['In English, the false cognate (falso cognato) "actually" means:', ['Atualmente', 'Na verdade / de fato', 'Atualmente falando', 'Raramente', 'Antigamente'], 1, '"Actually" significa "na verdade" ou "de fato" (atualmente = currently/nowadays).'],
+    ['Choose the correct sentence in the Simple Present:', ['She study every night for ENEM.', 'She studies every night for ENEM.', 'She studying every night for ENEM.', 'She is study every night.', 'She studied every night now.'], 1, 'Na 3ª pessoa do singular (she), verbos terminados em consoante + y recebem -ies (studies).'],
+    ['The word "however" in a text usually introduces an idea of:', ['Addition (adição)', 'Contrast / opposition (contraste)', 'Conclusion (conclusão)', 'Time sequence (tempo)', 'Cause (causa)'], 1, '"However" equivale a "contudo / no entanto", indicando oposição de ideias.']
+  ],
+  'default': [
+    ['Qual hábito mais potencializa a retenção de conteúdo para vestibulares?', ['Estudar só na véspera', 'Praticar questões e revisar os erros periodicamente', 'Apenas reler grifos passivamente', 'Evitar simulados', 'Estudar sem pausas por 8 horas'], 1, 'A prática ativa e a revisão espaçada consolidam a memória de longo prazo.'],
+    ['Ao errar uma questão de simulado, a melhor atitude é:', ['Ignorar o erro', 'Identificar se foi falta de conteúdo, atenção ou interpretação', 'Decorar a letra do gabarito', 'Desistir da matéria', 'Pular para outra prova'], 1, 'Mapear a causa do erro direciona exatamente o que precisa ser revisado.'],
+    ['Um cronograma de estudos sustentável deve:', ['Ser baseado no tempo real disponível na sua rotina', 'Copiar exatamente o de outra pessoa', 'Ter 14 horas diárias sem descanso', 'Excluir matérias difíceis', 'Mudar todo dia'], 0, 'Consistência diária supera metas irreais que geram abandono.']
+  ]
+};
+
+function getQuestionsForSubject(subj) {
+  const list = QUESTION_BANK[subj] || QUESTION_BANK.default;
+  return list.map(x => ({ question: x[0], options: x[1], answer: x[2], explanation: x[3] }));
+}
+
+/* BANCO DE DADOS INICIAL */
+function getDB() {
+  try {
+    const raw = storeGet(DB_KEY);
+    if (raw) return JSON.parse(raw);
+  } catch (e) {}
+
+  const now = Date.now();
+  const db = {
+    users: [
+      {
+        id: 'demo-estudante',
+        name: 'Estudante Conectado',
+        age: '17',
+        city: 'São Paulo',
+        uf: 'SP',
+        school: 'Escola / ETEC',
+        year: '3º ano do Ensino Médio',
+        email: DEMO_EMAIL,
+        password: '123456',
+        bio: 'Preparando-me para o ENEM e vestibulares de todo o Brasil.',
+        quiz: {
+          answers: [0, 0, 2, 0, 0],
+          area: 'Tecnologia e Exatas',
+          difficulties: ['Redação'],
+          goalCourse: 'Engenharia / Computação'
+        },
+        settings: { publicProfile: true, notifications: true },
+        createdAt: now - 86400000 * 2
+      }
+    ],
+    tasks: [
+      { id: 't1', userId: 'demo-estudante', time: '19:00', subject: 'Matemática', desc: 'Funções e Porcentagem · 5 questões', done: true, priority: 'Alta' },
+      { id: 't2', userId: 'demo-estudante', time: '20:00', subject: 'Física', desc: 'Cinemática e Leis de Newton · 5 questões', done: false, priority: 'Alta' },
+      { id: 't3', userId: 'demo-estudante', time: '21:00', subject: 'Redação', desc: 'Estrutura dissertativa e repertório · 5 questões', done: false, priority: 'Média' }
+    ],
+    posts: [
+      {
+        id: 'p1',
+        userId: 'demo-estudante',
+        name: 'Equipe A.P.R.O.V.A Conecta',
+        role: 'Plataforma Nacional',
+        group: 'Dúvidas ENEM 2026',
+        text: 'Bem-vindos ao A.P.R.O.V.A Conecta! 🇧🇷 Esta rede agora conta com verificação de e-mail e caixa de entrada integrada para mensagens oficiais. Cliquem em "Caixa de Entrada" para ver os e-mails recebidos!',
+        likes: [],
+        comments: [],
+        createdAt: now - 3600000
+      }
+    ],
+    messages: [
+      {
+        id: 'm1',
+        fromId: 'peer-lucas',
+        toId: 'demo-estudante',
+        text: 'E aí! Vi que você também quer área de Computação/Engenharia. Como estão seus estudos de Física?',
+        createdAt: now - 5400000
+      }
+    ],
+    inbox: [
+      {
+        id: 'ib-1',
+        userId: 'demo-estudante',
+        sender: 'Equipe A.P.R.O.V.A Conecta <suporte@aprovaconecta.edu.br>',
+        subject: 'Bem-vindo(a) ao A.P.R.O.V.A Conecta! 🚀',
+        date: new Date(now - 3600000).toLocaleString('pt-BR'),
+        snippet: 'Seu cadastro foi realizado com sucesso. Explore seu plano de estudos e conecte-se com vestibulandos!',
+        body: 'Olá Estudante Conectado!\n\nSeu e-mail foi verificado com sucesso e sua conta está ativa no A.P.R.O.V.A Conecta.\n\nAproveite os simulados, o comparador de faculdades e o chat entre estudantes.\n\nBons estudos e rumo à aprovação!',
+        read: false
+      }
+    ],
+    notifications: [
+      { id: 'n1', userId: 'demo-estudante', text: 'Você recebeu um novo e-mail na sua Caixa de Entrada.', read: false, createdAt: now - 3600000 }
+    ],
+    performance: {
+      'demo-estudante': { questions: 25, correct: 20 }
+    }
+  };
+
+  saveDB(db);
+  return db;
+}
+
+function saveDB(db) {
+  storeSet(DB_KEY, JSON.stringify(db));
+}
+
+const SUBJECTS_CATALOG = [
+  { name: 'Matemática', area: 'Exatas', icon: '∑', topics: 'Funções, Porcentagem, Geometria, Probabilidade e Estatística', weight: 'Peso alto em Engenharia e Tech' },
+  { name: 'Física', area: 'Exatas', icon: '⚡', topics: 'Cinemática, Dinâmica, Eletricidade, Termologia e Óptica', weight: 'Essencial para Exatas' },
+  { name: 'Química', area: 'Natureza', icon: '⚗️', topics: 'Estequiometria, Soluções, pH, Química Orgânica e Eletroquímica', weight: 'Peso alto em Saúde e Engenharias' },
+  { name: 'Biologia', area: 'Natureza', icon: '🧬', topics: 'Ecologia, Genética, Citologia, Fisiologia Humana e Evolução', weight: 'Peso máximo em Medicina e Saúde' },
+  { name: 'Português', area: 'Linguagens', icon: '📖', topics: 'Interpretação de Texto, Gramática Aplicada, Figuras de Linguagem e Literatura', weight: 'Base para todas as provas' },
+  { name: 'Redação', area: 'Linguagens', icon: '✍️', topics: 'Tese, Repertório Sociocultural, Coesão e Proposta de Intervenção (Nota 1000)', weight: 'Até 1000 pontos no ENEM' },
+  { name: 'Inglês', area: 'Linguagens', icon: '🌎', topics: 'Leitura Instrumental, Cognatos, Conectivos e Interpretação de Tirinhas/Artigos', weight: 'Língua Estrangeira ENEM' },
+  { name: 'História', area: 'Humanas', icon: '🏛️', topics: 'Brasil Colônia e Império, Era Vargas, Ditadura, Revolução Industrial e Guerra Fria', weight: 'Peso alto em Direito e Humanas' },
+  { name: 'Geografia', area: 'Humanas', icon: '🗺️', topics: 'Geopolítica, Globalização, Urbanização, Biomas Brasileiros e Climatologia', weight: 'Atualidades e Meio Ambiente' },
+  { name: 'Filosofia', area: 'Humanas', icon: '🦉', topics: 'Filosofia Antiga, Racionalismo, Empirismo, Ética Kantiana e Filosofia Política', weight: 'Pensamento crítico no ENEM' },
+  { name: 'Sociologia', area: 'Humanas', icon: '👥', topics: 'Durkheim, Weber, Marx, Indústria Cultural, Movimentos Sociais e Cidadania', weight: 'Temas transversais e Redação' }
+];
+
+let subjectAreaFilter = 'all';
+
+function filterSubjectsGrid(area, btn) {
+  subjectAreaFilter = area;
+  document.querySelectorAll('#subjectAreaFilters .pill').forEach(p => p.classList.remove('active-pill'));
+  if (btn) btn.classList.add('active-pill');
+  renderSubjectsCatalog();
+}
+
+function renderSubjectsCatalog() {
+  const grid = document.getElementById('subjectsCatalogGrid');
+  if (!grid) return;
+  const list = SUBJECTS_CATALOG.filter(s => subjectAreaFilter === 'all' || s.area === subjectAreaFilter);
+  grid.innerHTML = list.map(s => {
+    const qCount = (QUESTION_BANK[s.name] || []).length;
+    return `
+      <div class="card" style="padding:18px;box-shadow:none;border:1px solid var(--line)">
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <span class="tag">${s.area.toUpperCase()}</span>
+          <span style="font-size:20px">${s.icon}</span>
+        </div>
+        <h4 style="margin:12px 0 4px">${s.name}</h4>
+        <p style="font-size:12px;margin:0 0 8px">${s.topics}</p>
+        <small style="display:block;color:var(--r);font-weight:700;font-size:11px;margin-bottom:12px">${s.weight}</small>
+        <div style="display:flex;gap:7px;flex-wrap:wrap">
+          <button class="btn red sm" style="flex:1" onclick="startSubjectPractice('${s.name}')">Praticar (${qCount} questões)</button>
+          <button class="btn light sm" onclick="quickAddSubjectTask('${s.name}')" title="Adicionar ao cronograma">+ Plano</button>
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+function startSubjectPractice(subjectName) {
+  activity = {
+    taskId: null,
+    subject: subjectName,
+    questions: getQuestionsForSubject(subjectName),
+    index: 0,
+    score: 0
+  };
+  openApp('activity');
+  renderActivity();
+}
+
+function quickAddSubjectTask(subjectName) {
+  const db = getDB();
+  const cat = SUBJECTS_CATALOG.find(s => s.name === subjectName);
+  db.tasks.push({
+    id: uid(),
+    userId: state.user.id,
+    time: '20:30',
+    subject: subjectName,
+    desc: cat ? cat.topics : 'Revisão teórica + questões comentadas',
+    done: false,
+    priority: 'Alta'
+  });
+  saveDB(db);
+  syncFromDB();
+  renderAll();
+  toast(`${subjectName} adicionada ao seu cronograma diário!`);
+}
+
+function createDefaultTasksForUser(userId, area) {
+  return [
+    { id: uid(), userId, time: '18:30', subject: 'Matemática', desc: 'Funções, Porcentagem e Geometria · 5 questões', done: false, priority: 'Alta' },
+    { id: uid(), userId, time: '19:30', subject: 'Física', desc: 'Cinemática e Leis de Newton · 5 questões', done: false, priority: 'Alta' },
+    { id: uid(), userId, time: '20:30', subject: 'Química', desc: 'Ligações Químicas e Estequiometria · 5 questões', done: false, priority: 'Média' },
+    { id: uid(), userId, time: '21:30', subject: 'Redação', desc: 'Treino de tese e argumentação ENEM · 5 questões', done: false, priority: 'Alta' }
+  ];
+}
+
+/* NAVEGAÇÃO PÚBLICA & AUTH */
+function landing() {
+  ['auth', 'quiz', 'app'].forEach(id => document.getElementById(id).classList.add('hidden'));
+  document.getElementById('landing').classList.remove('hidden');
+  document.getElementById('header').classList.remove('hidden');
+  window.scrollTo(0, 0);
+}
+
+function showAuth(mode) {
+  ['landing', 'app', 'quiz'].forEach(id => document.getElementById(id).classList.add('hidden'));
+  document.getElementById('auth').classList.remove('hidden');
+  document.getElementById('header').classList.remove('hidden');
+
+  const box = document.getElementById('authbox');
+  if (mode === 'signup') {
+    box.innerHTML = `
+      <span class="tag">PASSO 1 • CADASTRO</span>
+      <h2 style="margin-top:10px">Criar minha conta</h2>
+      <p class="muted">Preencha seus dados. Nosso verificador analisará seu e-mail em tempo real.</p>
+      
+      <div class="row">
+        <div class="field"><label>Nome completo *</label><input id="name" placeholder="Ex: Ana Clara Souza"></div>
+        <div class="field"><label>Idade</label><input id="age" type="number" value="17" min="13" max="99"></div>
+      </div>
+      <div class="row">
+        <div class="field"><label>Cidade *</label><input id="city" placeholder="Ex: Cubatão"></div>
+        <div class="field"><label>Estado (UF)</label>
+          <select id="uf">
+            <option>SP</option><option>RJ</option><option>MG</option><option>PR</option>
+            <option>BA</option><option>PE</option><option>RS</option><option>SC</option><option>DF</option><option>Outro</option>
+          </select>
+        </div>
+      </div>
+      <div class="row">
+        <div class="field"><label>Escola / Instituição</label><input id="school" placeholder="Ex: ETEC / Escola Estadual"></div>
+        <div class="field"><label>Ano escolar</label>
+          <select id="year">
+            <option>1º ano do Ensino Médio</option>
+            <option>2º ano do Ensino Médio</option>
+            <option selected>3º ano do Ensino Médio</option>
+            <option>Cursinho pré-vestibular</option>
+            <option>Concluí o Ensino Médio</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>E-mail * (Com Verificador Ativo)</label>
+        <input id="email" type="email" placeholder="seu.email@gmail.com" oninput="checkEmailLive(this.value)">
+        <small id="emailFeedback" style="display:block;margin-top:5px;font-weight:700;font-size:11.5px;color:var(--m)">Digite um e-mail válido para continuar.</small>
+      </div>
+
+      <div class="field"><label>Senha *</label><input id="pass" type="password" placeholder="Crie uma senha"></div>
+      
+      <button class="btn red" id="signupBtn" style="width:100%;margin-top:6px" onclick="signup()">Continuar para o Teste Vocacional →</button>
+      <p class="muted" style="text-align:center;margin-top:16px">Já tem conta? <a onclick="showAuth('login')" style="color:var(--r);font-weight:800;cursor:pointer">Entrar agora</a></p>
+    `;
+  } else {
+    box.innerHTML = `
+      <span class="tag">ACESSO À PLATAFORMA</span>
+      <h2 style="margin-top:10px">Bem-vindo de volta.</h2>
+      <p class="muted">Entre com seu e-mail e senha para acessar seu dashboard e sua caixa de entrada.</p>
+      <div class="field"><label>E-mail</label><input id="email" type="email" placeholder="seuemail@exemplo.com"></div>
+      <div class="field"><label>Senha</label><input id="pass" type="password" placeholder="Sua senha" onkeydown="if(event.key==='Enter')login()"></div>
+      <button class="btn red" style="width:100%" onclick="login()">Entrar na plataforma</button>
+      <button class="btn light" style="width:100%;margin-top:9px" onclick="quickDemoEnter()">Entrar com Conta Demonstração</button>
+      <p class="muted" style="text-align:center;margin-top:16px">Ainda não tem cadastro? <a onclick="showAuth('signup')" style="color:var(--r);font-weight:800;cursor:pointer">Criar minha conta</a></p>
+    `;
+  }
+}
+
+function checkEmailLive(val) {
+  const fb = document.getElementById('emailFeedback');
+  const btn = document.getElementById('signupBtn');
+  if (!val.trim()) {
+    fb.textContent = 'Digite um e-mail válido para continuar.';
+    fb.style.color = 'var(--m)';
+    if(btn) btn.disabled = false;
+    return;
+  }
+  const res = validateEmail(val);
+  if (!res.valid) {
+    fb.textContent = '❌ ' + res.reason;
+    fb.style.color = 'var(--r)';
+  } else {
+    fb.textContent = '✅ E-mail válido e pronto para receber notificações na Caixa de Entrada!';
+    fb.style.color = '#18a957';
+  }
+}
+
+function signup() {
+  const name = document.getElementById('name').value.trim();
+  const emailInput = document.getElementById('email').value.trim();
+  const password = document.getElementById('pass').value;
+  const city = document.getElementById('city').value.trim() || 'São Paulo';
+  const uf = document.getElementById('uf').value;
+  const age = document.getElementById('age').value || '17';
+  const school = document.getElementById('school').value.trim() || 'Ensino Médio';
+  const year = document.getElementById('year').value;
+
+  if (!name || !emailInput || !password) {
+    return toast('Preencha nome, e-mail e senha para criar seu cadastro.');
+  }
+
+  // Verificação rigorosa no clique
+  const check = validateEmail(emailInput);
+  if (!check.valid) {
+    alert('E-mail Inválido:\n\n' + check.reason);
+    return;
+  }
+
+  const email = check.clean;
+  const db = getDB();
+  if (db.users.some(u => u.email.toLowerCase() === email)) {
+    return toast('Este e-mail já possui cadastro. Faça login!');
+  }
+
+  const newUser = {
+    id: uid(),
+    name,
+    age,
+    city,
+    uf,
+    school,
+    year,
+    email,
+    password,
+    bio: `Estudante de ${city}/${uf} se preparando para o ENEM e vestibulares.`,
+    quiz: null,
+    settings: { publicProfile: true, notifications: true },
+    createdAt: Date.now()
+  };
+
+  db.users.push(newUser);
+  db.tasks.push(...createDefaultTasksForUser(newUser.id, 'Tecnologia e Exatas'));
+  db.performance[newUser.id] = { questions: 0, correct: 0 };
+  
+  // Envio automático para a Caixa de Entrada do usuário
+  db.inbox = db.inbox || [];
+  db.inbox.push({
+    id: uid(),
+    userId: newUser.id,
+    sender: 'Equipe A.P.R.O.V.A Conecta <suporte@aprovaconecta.edu.br>',
+    subject: 'Bem-vindo(a) ao A.P.R.O.V.A Conecta! 🚀',
+    date: new Date().toLocaleString('pt-BR'),
+    snippet: 'Sua verificação de e-mail foi concluída com sucesso. Acesse sua conta.',
+    body: `Olá ${name}!\n\nSeu e-mail (${email}) foi verificado com sucesso pelo nosso sistema.\n\nSua conta no A.P.R.O.V.A Conecta está ativa. Agora você pode acompanhar seu cronograma, participar da comunidade e receber alertas importantes diretamente aqui na sua Caixa de Entrada.\n\nBons estudos!`,
+    read: false
+  });
+
+  db.notifications.unshift({
+    id: uid(),
+    userId: newUser.id,
+    text: `Novo e-mail de boas-vindas entregue na sua Caixa de Entrada!`,
+    read: false,
+    createdAt: Date.now()
+  });
+
+  saveDB(db);
+  state.user = newUser;
+  state.logged = true;
+  storeSet(SESSION_KEY, newUser.id);
+  toast('E-mail verificado com sucesso! E-mail de boas-vindas enviado.');
+  startQuiz();
+}
+
+function login() {
+  const email = document.getElementById('email').value.trim().toLowerCase();
+  const password = document.getElementById('pass').value;
+  if (!email || !password) return toast('Informe e-mail e senha.');
+
+  const db = getDB();
+  const user = db.users.find(u => u.email.toLowerCase() === email && u.password === password);
+  if (!user) return toast('E-mail ou senha incorretos.');
+
+  state.user = user;
+  state.logged = true;
+  storeSet(SESSION_KEY, user.id);
+  syncFromDB();
+  openApp(user.quiz ? 'dashboard' : 'quiz');
+  toast(`Bem-vindo(a), ${user.name.split(' ')[0]}!`);
+}
+
+function quickDemoEnter() {
+  const db = getDB();
+  const demo = db.users.find(u => u.email === DEMO_EMAIL) || db.users[0];
+  state.user = demo;
+  state.logged = true;
+  storeSet(SESSION_KEY, demo.id);
+  syncFromDB();
+  openApp('dashboard');
+  toast('Modo demonstração ativo!');
+}
+
+function logout() {
+  state.logged = false;
+  state.user = null;
+  storeSet(SESSION_KEY, '');
+  landing();
+  toast('Você saiu da sua conta.');
+}
+
+/* TESTE VOCACIONAL & ONBOARDING */
+const QUIZ_QUESTIONS = [
+  ['Qual dessas atividades mais combina com você?', ['Resolver problemas lógicos', 'Criar e projetar coisas', 'Ajudar e cuidar de pessoas', 'Liderar equipes e negócios', 'Pesquisar e descobrir', 'Comunicar ideias e histórias']],
+  ['Quais matérias você mais gosta na escola?', ['Matemática e Física', 'Biologia e Química', 'História, Geografia e Sociologia', 'Português, Literatura e Artes', 'Informática e Tecnologia']],
+  ['Como você prefere aprender no dia a dia?', ['Resolvendo exercícios práticos', 'Assistindo videoaulas', 'Lendo textos e resumos', 'Projetos e experimentos', 'Mistura de vários formatos']],
+  ['Qual área do conhecimento desperta mais seu interesse hoje?', ['Tecnologia e Exatas', 'Saúde e Biológicas', 'Humanas e Sociais', 'Comunicação e Artes', 'Negócios e Gestão', 'Engenharias']],
+  ['Qual tipo de instituição você prioriza?', ['Universidade Pública (SISU / Vestibular)', 'Faculdade Privada com Bolsa (PROUNI)', 'Ainda estou avaliando opções', 'Ensino Técnico ou Tecnólogo']],
+  ['Quanto tempo por dia você tem disponível para estudar?', ['1 a 2 horas por dia', '2 a 3 horas por dia', '3 a 4 horas por dia', 'Mais de 4 horas por dia']]
+];
+
+function startQuiz() {
+  ['auth', 'landing', 'app'].forEach(id => document.getElementById(id).classList.add('hidden'));
+  document.getElementById('quiz').classList.remove('hidden');
+  qi = 0;
+  answers = [];
+  renderQ();
+}
+
+function renderQ() {
+  const q = QUIZ_QUESTIONS[qi];
+  document.getElementById('qstep').textContent = `Etapa ${qi + 1} de ${QUIZ_QUESTIONS.length}`;
+  document.getElementById('qbar').style.width = ((qi + 1) / QUIZ_QUESTIONS.length * 100) + '%';
+  document.getElementById('qbody').innerHTML = `
+    <div class="question">${q[0]}</div>
+    <p class="muted">Selecione a opção que mais se aproxima da sua realidade.</p>
+    <div class="options">
+      ${q[1].map((opt, idx) => `
+        <button class="option ${answers[qi] === idx ? 'sel' : ''}" onclick="pickQ(${idx})">
+          <span>${opt}</span>
+          <span>${answers[qi] === idx ? '●' : '○'}</span>
+        </button>
+      `).join('')}
+    </div>
+    <div style="display:flex;justify-content:space-between;margin-top:24px">
+      <button class="btn light" onclick="prevQ()" ${qi === 0 ? 'disabled' : ''}>← Voltar</button>
+      <button class="btn red" onclick="nextQ()">${qi === QUIZ_QUESTIONS.length - 1 ? 'Ver meu perfil personalizado ✓' : 'Continuar →'}</button>
+    </div>
+  `;
+}
+
+function pickQ(idx) {
+  answers[qi] = idx;
+  renderQ();
+}
+
+function prevQ() {
+  if (qi > 0) { qi--; renderQ(); }
+}
+
+function nextQ() {
+  if (answers[qi] === undefined) return toast('Escolha uma alternativa para continuar.');
+  if (qi < QUIZ_QUESTIONS.length - 1) {
+    qi++;
+    renderQ();
+  } else {
+    finishQuiz();
+  }
+}
+
+function recommendedCoursesByArea(area) {
+  const map = {
+    'Tecnologia e Exatas': ['Engenharia de Computação', 'Ciência da Computação', 'Sistemas de Informação', 'Estatística'],
+    'Saúde e Biológicas': ['Medicina', 'Enfermagem', 'Fisioterapia', 'Biomedicina'],
+    'Humanas e Sociais': ['Direito', 'Psicologia', 'Relações Internacionais', 'Ciências Sociais'],
+    'Comunicação e Artes': ['Design Digital', 'Publicidade e Propaganda', 'Jornalismo', 'Arquitetura'],
+    'Negócios e Gestão': ['Administração', 'Economia', 'Engenharia de Produção', 'Ciências Contábeis'],
+    'Engenharias': ['Engenharia Mecânica', 'Engenharia Civil', 'Engenharia Elétrica', 'Engenharia de Produção']
+  };
+  return map[area] || map['Tecnologia e Exatas'];
+}
+
+function finishQuiz() {
+  const chosenArea = QUIZ_QUESTIONS[3][1][answers[3]] || 'Tecnologia e Exatas';
+  const courses = recommendedCoursesByArea(chosenArea);
+  const goalCourse = courses[0];
+
+  const db = getDB();
+  const u = db.users.find(x => x.id === state.user.id);
+  if (u) {
+    u.quiz = {
+      answers,
+      area: chosenArea,
+      goalCourse,
+      studyTime: QUIZ_QUESTIONS[5][1][answers[5]] || '2 a 3 horas por dia'
+    };
+    db.tasks = db.tasks.filter(t => t.userId !== u.id);
+    db.tasks.push(...createDefaultTasksForUser(u.id, chosenArea));
+    db.notifications.unshift({
+      id: uid(),
+      userId: u.id,
+      text: `Perfil atualizado! Sua maior afinidade apontou para ${chosenArea} (${goalCourse}).`,
+      read: false,
+      createdAt: Date.now()
+    });
+    saveDB(db);
+    state.user = u;
+  }
+
+  syncFromDB();
+  document.getElementById('quiz').classList.add('hidden');
+  openApp('dashboard');
+  toast('Seu ambiente foi personalizado!');
+}
+
+/* SINCRONIZAÇÃO DE ESTADO */
+function syncFromDB() {
+  const db = getDB();
+  if (!state.user) return;
+  const freshUser = db.users.find(u => u.id === state.user.id);
+  if (freshUser) state.user = freshUser;
+  state.quiz = state.user.quiz || { area: 'Tecnologia e Exatas', goalCourse: 'Engenharia de Computação' };
+  state.tasks = db.tasks.filter(t => t.userId === state.user.id);
+  state.posts = db.posts.slice().sort((a, b) => b.createdAt - a.createdAt);
+  state.notifications = db.notifications.filter(n => n.userId === state.user.id).sort((a, b) => b.createdAt - a.createdAt);
+  state.inbox = (db.inbox || []).filter(i => i.userId === state.user.id).sort((a, b) => b.createdAt - a.createdAt);
+  state.performance = db.performance[state.user.id] || { questions: 0, correct: 0 };
+  state.settings = state.user.settings || { publicProfile: true, notifications: true };
+}
+
+function openApp(page = 'dashboard') {
+  if (!state.logged || !state.user) return showAuth('login');
+  syncFromDB();
+
+  ['landing', 'auth', 'quiz'].forEach(id => document.getElementById(id).classList.add('hidden'));
+  document.getElementById('header').classList.add('hidden');
+  document.getElementById('app').classList.remove('hidden');
+
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  const target = document.getElementById('p-' + page) || document.getElementById('p-dashboard');
+  target.classList.add('active');
+
+  document.querySelectorAll('.side a[data-page]').forEach(a => {
+    a.classList.toggle('active', a.dataset.page === page);
+  });
+
+  renderAll();
+  window.scrollTo(0, 0);
+}
+
+/* RENDERIZAÇÃO GERAL */
+function renderAll() {
+  const u = state.user;
+  const area = state.quiz?.area || 'Tecnologia e Exatas';
+  const goalCourse = state.quiz?.goalCourse || recommendedCoursesByArea(area)[0];
+  const initial = (u.name[0] || 'A').toUpperCase();
+
+  document.getElementById('hello').textContent = `Olá, ${u.name.split(' ')[0]}! 👋`;
+  document.getElementById('topAvatar').textContent = initial;
+  document.getElementById('dashAreaBadge').textContent = area;
+  document.getElementById('dashSchoolBadge').textContent = `${u.year || 'Ensino Médio'} · ${u.city}/${u.uf}`;
+  document.getElementById('goalText').textContent = `Buscar vaga em ${goalCourse} (${area})`;
+
+  const doneCount = state.tasks.filter(t => t.done).length;
+  const pct = state.tasks.length ? Math.round((doneCount / state.tasks.length) * 100) : 0;
+  const totalQ = state.performance.questions || 0;
+  const correctQ = state.performance.correct || 0;
+  const acc = totalQ ? Math.round((correctQ / totalQ) * 100) + '%' : '—';
+  const points = 100 + (doneCount * 35) + (totalQ * 5);
+
+  let level = 'Iniciante';
+  if (points >= 350) level = 'Aprovado';
+  else if (points >= 250) level = 'Conectado';
+  else if (points >= 170) level = 'Preparado';
+  else if (points >= 110) level = 'Explorador';
+
+  document.getElementById('studyPct').textContent = pct + '%';
+  document.getElementById('questions').textContent = totalQ;
+  document.getElementById('accuracy').textContent = acc;
+  document.getElementById('streak').textContent = Math.max(1, doneCount + 3) + ' dias 🔥';
+  document.getElementById('levelName').textContent = 'Nível ' + level;
+  document.getElementById('sideLevel').textContent = 'Nível: ' + level;
+  document.getElementById('pointsPill').textContent = `🏆 ${points} Pontos A.P.R.O.V.A`;
+
+  const unreadNotifs = state.notifications.filter(n => !n.read).length;
+  document.getElementById('notifBadge').textContent = unreadNotifs;
+  
+  const unreadInbox = state.inbox.filter(i => !i.read).length;
+  document.getElementById('inboxBadge').textContent = unreadInbox;
+  const inboxTopCount = document.getElementById('inboxCountTop');
+  if(inboxTopCount) inboxTopCount.textContent = state.inbox.length;
+  const userEmailDisplay = document.getElementById('userEmailDisplay');
+  if(userEmailDisplay) userEmailDisplay.textContent = u.email;
+
+  renderRecommendations(area, goalCourse);
+  renderSubjectsCatalog();
+  renderToday();
+  renderDashPeers();
+  renderTasks();
+  renderFeed();
+  renderConnectDirectory();
+  renderChatSidebar();
+  renderOpps();
+  renderColleges();
+  renderCompare();
+  renderCommunities();
+  renderProfile(area, goalCourse, points, level);
+  renderInbox();
+  renderNotifications();
+  renderSettings();
+}
+
+function renderRecommendations(area, goalCourse) {
+  const recs = [
+    { ico: '🎓', title: `5 faculdades com ${goalCourse} perto de ${state.user.city}`, desc: 'Veja notas de corte estimadas, modalidades e formas de ingresso pelo SISU e PROUNI.', action: "openApp('colleges')" },
+    { ico: '💰', title: `3 oportunidades de bolsa em ${area}`, desc: 'Programas com inscrições abertas compatíveis com seu perfil.', action: "openApp('opps')" },
+    { ico: '💬', title: 'Estudantes da mesma área disponíveis para conversar', desc: 'Troque materiais, resumos e dicas de prova no chat direto.', action: "openApp('messages')" },
+    { ico: '📥', title: 'Verificar Caixa de Entrada de E-mails', desc: 'Confira mensagens oficiais enviadas para o seu endereço cadastrado.', action: "openApp('inbox')" }
+  ];
+  document.getElementById('recommendations').innerHTML = recs.map(r => `
+    <div class="rec" style="cursor:pointer" onclick="${r.action}">
+      <div class="ico">${r.ico}</div>
+      <div><b>${r.title}</b><p>${r.desc}</p></div>
+    </div>
+  `).join('');
+}
+
+function renderToday() {
+  document.getElementById('today').innerHTML = state.tasks.slice(0, 3).map(t => `
+    <div class="rec">
+      <div class="ico">${t.time}</div>
+      <div style="flex:1">
+        <b>${t.subject} ${t.done ? '✓' : ''}</b>
+        <p>${t.desc}</p>
+      </div>
+      <button class="pill" onclick="startActivity('${t.id}')">Praticar</button>
+    </div>
+  `).join('') || '<div class="empty">Nenhuma tarefa para hoje.</div>';
+}
+
+function renderDashPeers() {
+  const db = getDB();
+  const peers = db.users.filter(u => u.id !== state.user.id && u.settings?.publicProfile !== false).slice(0, 3);
+  document.getElementById('dashPeers').innerHTML = peers.map(p => `
+    <div class="rec" style="align-items:center">
+      <div class="avatar">${p.name[0]}</div>
+      <div style="flex:1;min-width:0">
+        <b>${escapeHtml(p.name)}</b>
+        <p>${escapeHtml(p.quiz?.goalCourse || 'Vestibulando')} · ${escapeHtml(p.city)}/${escapeHtml(p.uf)}</p>
+      </div>
+      <button class="btn light sm" onclick="openChatWith('${p.id}')">Conversar</button>
+    </div>
+  `).join('');
+}
+
+/* PLANO DE ESTUDOS & ATIVIDADES */
+function filterTasks(filter, btn) {
+  taskFilter = filter;
+  document.querySelectorAll('#studyFilters .pill').forEach(p => p.classList.remove('active-pill'));
+  if (btn) btn.classList.add('active-pill');
+  renderTasks();
+}
+
+function renderTasks() {
+  let list = state.tasks;
+  if (taskFilter === 'pending') list = list.filter(t => !t.done);
+  if (taskFilter === 'done') list = list.filter(t => t.done);
+
+  document.getElementById('taskList').innerHTML = list.map(t => `
+    <div class="task">
+      <b>${t.time}</b>
+      <div>
+        <b style="${t.done ? 'text-decoration:line-through;opacity:0.6' : ''}">${escapeHtml(t.subject)}</b>
+        <div class="muted">${escapeHtml(t.desc)}</div>
+        <span class="tag" style="margin-top:5px">${t.priority || 'Prioridade'}</span>
+      </div>
+      <div style="display:flex;gap:8px;align-items:center">
+        <button class="btn light sm" onclick="startActivity('${t.id}')">Praticar questões</button>
+        <button class="check ${t.done ? 'done' : ''}" onclick="toggleTask('${t.id}')" title="Marcar concluída"></button>
+      </div>
+    </div>
+  `).join('') || '<div class="empty">Nenhuma tarefa nesta visualização.</div>';
+}
+
+function toggleTask(id) {
+  const db = getDB();
+  const t = db.tasks.find(x => x.id === id);
+  if (!t) return;
+  t.done = !t.done;
+  saveDB(db);
+  syncFromDB();
+  renderAll();
+  toast(t.done ? 'Tarefa concluída! +35 Pontos A.P.R.O.V.A 🎉' : 'Tarefa reaberta.');
+}
+
+function addTask() {
+  const names = SUBJECTS_CATALOG.map(s => s.name).join(', ');
+  const subject = prompt(`Qual matéria deseja adicionar ao cronograma?\nDisponíveis com questões: ${names}`);
+  if (!subject || !subject.trim()) return;
+  const clean = subject.trim();
+  const matched = SUBJECTS_CATALOG.find(s => s.name.toLowerCase() === clean.toLowerCase());
+  const finalName = matched ? matched.name : clean;
+  const db = getDB();
+  db.tasks.push({
+    id: uid(),
+    userId: state.user.id,
+    time: '21:30',
+    subject: finalName,
+    desc: matched ? matched.topics : 'Sessão de estudo + questões práticas',
+    done: false,
+    priority: 'Média'
+  });
+  saveDB(db);
+  syncFromDB();
+  renderAll();
+  toast(`${finalName} adicionada ao seu plano!`);
+}
+
+function startActivity(taskId) {
+  const t = state.tasks.find(x => x.id === taskId);
+  if (!t) return;
+  activity = {
+    taskId,
+    subject: t.subject,
+    questions: getQuestionsForSubject(t.subject),
+    index: 0,
+    score: 0
+  };
+  openApp('activity');
+  renderActivity();
+}
+
+function renderActivity() {
+  const q = activity.questions[activity.index];
+  const total = activity.questions.length;
+  document.getElementById('activityTitle').textContent = `${activity.subject} · Treino Guiado`;
+  document.getElementById('activitySubject').textContent = activity.subject.toUpperCase();
+  document.getElementById('activityCounter').textContent = `Questão ${activity.index + 1} de ${total}`;
+  document.getElementById('activityBar').style.width = (((activity.index + 1) / total) * 100) + '%';
+
+  document.getElementById('activityBody').innerHTML = `
+    <div class="question" style="margin-top:16px">${q.question}</div>
+    <div class="options">
+      ${q.options.map((opt, idx) => `<button class="option" onclick="answerQuestion(${idx})">${opt}</button>`).join('')}
+    </div>
+    <div id="feedback"></div>
+  `;
+}
+
+function answerQuestion(idx) {
+  const q = activity.questions[activity.index];
+  document.querySelectorAll('#activityBody .option').forEach((btn, i) => {
+    btn.classList.add('choiceDisabled');
+    if (i === q.answer) btn.classList.add('sel');
+  });
+  const ok = idx === q.answer;
+  if (ok) activity.score++;
+
+  document.getElementById('feedback').innerHTML = `
+    <div class="answerFeedback ${ok ? 'correct' : 'wrong'}">
+      <b>${ok ? '✅ Resposta correta!' : '❌ Não foi dessa vez.'}</b>
+      <p style="margin:6px 0 12px">${q.explanation}</p>
+      <button class="btn red sm" onclick="nextActivity()">
+        ${activity.index === activity.questions.length - 1 ? 'Concluir atividade ✓' : 'Próxima questão →'}
+      </button>
+    </div>
+  `;
+}
+
+function nextActivity() {
+  if (activity.index < activity.questions.length - 1) {
+    activity.index++;
+    renderActivity();
+    return;
+  }
+  const db = getDB();
+  const perf = db.performance[state.user.id] || { questions: 0, correct: 0 };
+  perf.questions += activity.questions.length;
+  perf.correct += activity.score;
+  db.performance[state.user.id] = perf;
+
+  const t = db.tasks.find(x => x.id === activity.taskId);
+  if (t) t.done = true;
+
+  db.notifications.unshift({
+    id: uid(),
+    userId: state.user.id,
+    text: `Atividade de ${activity.subject} finalizada: ${activity.score}/${activity.questions.length} acertos!`,
+    read: false,
+    createdAt: Date.now()
+  });
+
+  saveDB(db);
+  toast(`Atividade concluída: ${activity.score}/${activity.questions.length} acertos!`);
+  openApp('studies');
+}
+
+/* CAIXA DE ENTRADA / E-MAIL */
+function renderInbox() {
+  const box = document.getElementById('inboxList');
+  if (!box) return;
+  box.innerHTML = state.inbox.map(item => `
+    <div class="card" style="margin-bottom:12px;border-left:4px solid ${item.read ? 'var(--line)' : 'var(--r)'}">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start">
+        <div>
+          <span class="tag">${item.read ? 'Lido' : 'Nova Mensagem'}</span>
+          <h4 style="margin:8px 0 2px">${escapeHtml(item.subject)}</h4>
+          <small class="muted">De: ${escapeHtml(item.sender)} · ${item.date}</small>
+        </div>
+        <button class="btn light sm" onclick="toggleReadEmail('${item.id}')">${item.read ? 'Marcar como não lido' : 'Ler e-mail ✓'}</button>
+      </div>
+      <div style="margin-top:12px;padding-top:12px;border-top:1px solid var(--line);white-space:pre-line;font-size:13px;line-height:1.6">
+        ${escapeHtml(item.body)}
+      </div>
+    </div>
+  `).join('') || '<div class="empty">Sua caixa de entrada está vazia.</div>';
+}
+
+function toggleReadEmail(id) {
+  const db = getDB();
+  const mail = (db.inbox || []).find(x => x.id === id);
+  if(mail) {
+    mail.read = !mail.read;
+    saveDB(db);
+    syncFromDB();
+    renderAll();
+    toast('Status da mensagem atualizado.');
+  }
+}
+
+function sendTestWelcomeEmail() {
+  const db = getDB();
+  const subjects = [
+    'Dica da Semana: Como estruturar sua redação nota 1000 ✍️',
+    'Atualização SISU 2026: Novas vagas e pesos nas universidades',
+    'Simulado Geral ENEM liberado na sua plataforma 📊',
+    'Parabéns pela dedicação nos estudos hoje! 🔥'
+  ];
+  const bodies = [
+    'Olá!\n\nSeparamos as principais orientações para você gabaritar a redação do ENEM.\n\n1. Use repertório legitimado\n2. Mantenha coesão interparágrafos\n3. Detalhe bem a proposta de intervenção.\n\nBons estudos!',
+    'Olá! O Ministério da Educação liberou o cronograma preliminar do SISU. Continue focado em manter uma boa média nas quatro áreas do conhecimento.',
+    'Um novo simulado com 45 questões comentadas foi adicionado ao seu painel. Acesse a aba de Estudos e teste seus conhecimentos!',
+    'Notamos que você completou tarefas importantes na sua rotina esta semana. Continue firme rumo à universidade!'
+  ];
+
+  const idx = Math.floor(Math.random() * subjects.length);
+
+  db.inbox = db.inbox || [];
+  db.inbox.unshift({
+    id: uid(),
+    userId: state.user.id,
+    sender: 'A.P.R.O.V.A Conecta Alertas <notificacoes@aprovaconecta.edu.br>',
+    subject: subjects[idx],
+    date: new Date().toLocaleString('pt-BR'),
+    snippet: bodies[idx].slice(0, 80) + '...',
+    body: bodies[idx],
+    read: false
+  });
+
+  saveDB(db);
+  syncFromDB();
+  renderAll();
+  toast('Novo e-mail entregue na sua Caixa de Entrada!');
+}
+
+/* FEED SOCIAL CONECTA */
+function publishQuickPost() {
+  const input = document.getElementById('quickPostInput');
+  const group = document.getElementById('quickPostGroup').value;
+  const text = input.value.trim();
+  if (!text) return toast('Escreva algo antes de publicar.');
+
+  const db = getDB();
+  db.posts.unshift({
+    id: uid(),
+    userId: state.user.id,
+    name: state.user.name,
+    role: `${state.quiz?.area || 'Estudante'} · ${state.quiz?.goalCourse || 'ENEM 2026'}`,
+    group,
+    text,
+    likes: [],
+    comments: [],
+    createdAt: Date.now()
+  });
+  saveDB(db);
+  input.value = '';
+  syncFromDB();
+  renderFeed();
+  toast('Publicação compartilhada no Conecta!');
+}
+
+function toggleLike(postId) {
+  const db = getDB();
+  const p = db.posts.find(x => x.id === postId);
+  if (!p) return;
+  p.likes = p.likes || [];
+  const idx = p.likes.indexOf(state.user.id);
+  if (idx >= 0) p.likes.splice(idx, 1);
+  else p.likes.push(state.user.id);
+  saveDB(db);
+  syncFromDB();
+  renderFeed();
+}
+
+function commentPost(postId) {
+  const c = prompt('Escreva seu comentário:');
+  if (!c || !c.trim()) return;
+  const db = getDB();
+  const p = db.posts.find(x => x.id === postId);
+  if (!p) return;
+  p.comments = p.comments || [];
+  p.comments.push({
+    id: uid(),
+    userId: state.user.id,
+    name: state.user.name,
+    text: c.trim()
+  });
+  saveDB(db);
+  syncFromDB();
+  renderFeed();
+  toast('Comentário adicionado!');
+}
+
+function renderFeed() {
+  const box = document.getElementById('feed');
+  if (!box) return;
+  box.innerHTML = state.posts.map(p => {
+    const liked = (p.likes || []).includes(state.user.id);
+    const isMe = p.userId === state.user.id;
+    return `
+      <div class="card post">
+        <div class="posthead">
+          <div class="posthead-left">
+            <div class="avatar ${isMe ? 'red-av' : ''}">${(p.name || 'E')[0]}</div>
+            <div>
+              <b>${escapeHtml(p.name)}</b>
+              <small>${escapeHtml(p.role || p.group)} · <span style="color:var(--r);font-weight:700">${escapeHtml(p.group)}</span></small>
+            </div>
+          </div>
+          ${!isMe ? `<button class="btn light sm" onclick="openChatWith('${p.userId}')">💬 Conversar</button>` : '<span class="tag">Você</span>'}
+        </div>
+        <div class="posttext">${escapeHtml(p.text)}</div>
+        <div class="postactions">
+          <button class="pill ${liked ? 'saved' : ''}" onclick="toggleLike('${p.id}')">${liked ? '♥ Curtido' : '♡ Curtir'} (${(p.likes || []).length})</button>
+          <button class="pill" onclick="commentPost('${p.id}')">💬 Comentar (${(p.comments || []).length})</button>
+          <button class="pill" onclick="toast('Link da publicação copiado!')">↗ Compartilhar</button>
+        </div>
+        ${(p.comments || []).length ? `
+          <div class="commentBox">
+            ${p.comments.map(c => `<div class="commentItem"><b>${escapeHtml(c.name)}:</b> ${escapeHtml(c.text)}</div>`).join('')}
+          </div>
+        ` : ''}
+      </div>
+    `;
+  }).join('');
+}
+
+function renderConnectDirectory() {
+  const db = getDB();
+  const peers = db.users.filter(u => u.id !== state.user.id && u.settings?.publicProfile !== false);
+  document.getElementById('connectDirectory').innerHTML = peers.map(p => `
+    <div class="rec" style="align-items:center">
+      <div class="avatar">${p.name[0]}</div>
+      <div style="flex:1;min-width:0">
+        <b>${escapeHtml(p.name)}</b>
+        <p>${escapeHtml(p.quiz?.goalCourse || 'Vestibulando')} · ${escapeHtml(p.city)}/${escapeHtml(p.uf)}</p>
+      </div>
+      <button class="btn red sm" onclick="openChatWith('${p.id}')">Chat</button>
+    </div>
+  `).join('');
+}
+
+/* SISTEMA DE MENSAGENS DIRETAS */
+function openChatWith(peerId) {
+  activeChatPeerId = peerId;
+  openApp('messages');
+  renderChatSidebar();
+  renderChatWindow();
+}
+
+function renderChatSidebar() {
+  const db = getDB();
+  const q = (document.getElementById('chatSearchUser')?.value || '').toLowerCase();
+  const peers = db.users.filter(u =>
+    u.id !== state.user.id &&
+    u.settings?.publicProfile !== false &&
+    (u.name.toLowerCase().includes(q) || (u.quiz?.goalCourse || '').toLowerCase().includes(q) || (u.city || '').toLowerCase().includes(q))
+  );
+
+  if (!activeChatPeerId && peers.length) {
+    activeChatPeerId = peers[0].id;
+  }
+
+  document.getElementById('chatUserList').innerHTML = peers.map(p => {
+    const conv = db.messages.filter(m =>
+      (m.fromId === state.user.id && m.toId === p.id) ||
+      (m.fromId === p.id && m.toId === state.user.id)
+    );
+    const last = conv[conv.length - 1];
+    return `
+      <div class="chat-user-item ${activeChatPeerId === p.id ? 'active' : ''}" onclick="selectChatPeer('${p.id}')">
+        <div class="avatar">${p.name[0]}</div>
+        <div class="chat-user-info">
+          <b>${escapeHtml(p.name)}</b>
+          <small>${last ? escapeHtml(last.text) : escapeHtml((p.quiz?.goalCourse || 'Estudante') + ' · ' + p.city)}</small>
+        </div>
+        <span class="online-dot" title="Disponível"></span>
+      </div>
+    `;
+  }).join('') || '<div class="empty">Nenhum estudante encontrado.</div>';
+
+  renderChatWindow();
+}
+
+function selectChatPeer(peerId) {
+  activeChatPeerId = peerId;
+  renderChatSidebar();
+  renderChatWindow();
+}
+
+function renderChatWindow() {
+  const win = document.getElementById('chatWindow');
+  if (!win) return;
+  const db = getDB();
+  const peer = db.users.find(u => u.id === activeChatPeerId);
+  if (!peer) {
+    win.innerHTML = '<div class="empty" style="margin:auto">Selecione um estudante ao lado para conversar.</div>';
+    return;
+  }
+
+  const msgs = db.messages.filter(m =>
+    (m.fromId === state.user.id && m.toId === peer.id) ||
+    (m.fromId === peer.id && m.toId === state.user.id)
+  ).sort((a, b) => a.createdAt - b.createdAt);
+
+  win.innerHTML = `
+    <div class="chat-win-head">
+      <div style="display:flex;align-items:center;gap:11px">
+        <div class="avatar red-av">${peer.name[0]}</div>
+        <div>
+          <b style="font-size:14.5px;display:block">${escapeHtml(peer.name)}</b>
+          <small class="muted">${escapeHtml(peer.quiz?.goalCourse || 'Vestibulando')} · ${escapeHtml(peer.school)} (${escapeHtml(peer.city)}/${escapeHtml(peer.uf)})</small>
+        </div>
+      </div>
+      <span class="tag">Conectados</span>
+    </div>
+
+    <div class="chat-messages" id="chatMessagesScroll">
+      ${msgs.length ? msgs.map(m => {
+        const isMe = m.fromId === state.user.id;
+        const dt = new Date(m.createdAt);
+        const hhmm = dt.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
+        return `
+          <div class="msg-bubble ${isMe ? 'me' : 'them'}">
+            ${escapeHtml(m.text)}
+            <span class="msg-meta">${isMe ? 'Você' : escapeHtml(peer.name.split(' ')[0])} · ${hhmm}</span>
+          </div>
+        `;
+      }).join('') : `<div class="empty">Inicie a conversa com ${escapeHtml(peer.name.split(' ')[0])}! Troquem dicas de estudo, cursos ou materiais.</div>`}
+    </div>
+
+    <div class="chat-input-bar">
+      <input class="search" id="chatMessageInput" placeholder="Escreva sua mensagem para ${escapeHtml(peer.name.split(' ')[0])}..." onkeydown="if(event.key==='Enter')sendDirectMessage()">
+      <button class="btn red" onclick="sendDirectMessage()">Enviar →</button>
+    </div>
+  `;
+
+  const scrollBox = document.getElementById('chatMessagesScroll');
+  if (scrollBox) scrollBox.scrollTop = scrollBox.scrollHeight;
+}
+
+function sendDirectMessage() {
+  const input = document.getElementById('chatMessageInput');
+  const text = input?.value.trim();
+  if (!text || !activeChatPeerId) return;
+
+  const db = getDB();
+  db.messages.push({
+    id: uid(),
+    fromId: state.user.id,
+    toId: activeChatPeerId,
+    text,
+    createdAt: Date.now()
+  });
+
+  saveDB(db);
+  input.value = '';
+  renderChatSidebar();
+  renderChatWindow();
+}
+
+/* OPORTUNIDADES, FACULDADES & COMPARADOR */
+const OPPS_DATA = [
+  ['bolsa', 'PROUNI — Bolsas Integrais e Parciais', 'Bolsas de 50% e 100% em instituições privadas usando sua nota do ENEM.', 'Consulte edital oficial MEC'],
+  ['vest', 'SISU — Universidades Públicas', 'Concorra a vagas em universidades federais e estaduais em todo o Brasil.', 'Inscrições semestrais'],
+  ['bolsa', 'FIES — Financiamento Estudantil', 'Financiamento com juros reduzidos para cursos superiores em faculdades participantes.', 'Portal FIES Oficial'],
+  ['curso', 'Lógica de Programação e Algoritmos', 'Curso introdutório gratuito com certificado para quem busca área de Tecnologia.', 'Online · Gratuito'],
+  ['vest', 'Vestibular FUVEST / UNICAMP / UNESP', 'Calendário unificado e guia de obras obrigatórias para vestibulares paulistas.', 'Atenção aos prazos'],
+  ['curso', 'Oficina de Redação Nota 1000', 'Prática guiada das 5 competências exigidas na redação do ENEM.', 'Online · Gratuito']
+];
+let savedOpps = [];
+
+function toggleSaveOpp(i) {
+  savedOpps.includes(i) ? savedOpps = savedOpps.filter(x => x !== i) : savedOpps.push(i);
+  renderOpps();
+  toast(savedOpps.includes(i) ? 'Oportunidade salva no seu perfil!' : 'Removida dos salvos.');
+}
+
+function oppDetail(i) {
+  const o = OPPS_DATA[i];
+  openApp('opp-detail');
+  document.getElementById('detailOppName').textContent = o[1];
+  document.getElementById('detailOppMeta').textContent = o[3];
+  document.getElementById('detailOppTag').textContent = o[0].toUpperCase();
+  document.getElementById('detailOppTitle').textContent = o[1];
+  document.getElementById('detailOppDesc').textContent = o[2];
+  const btn = document.getElementById('detailOppSave');
+  btn.textContent = savedOpps.includes(i) ? '★ Oportunidade salva' : '☆ Salvar oportunidade';
+  btn.onclick = () => { toggleSaveOpp(i); oppDetail(i); };
+}
+
+function renderOpps(filter = 'all') {
+  const list = OPPS_DATA.map((o, i) => ({ o, i })).filter(x => filter === 'all' || x.o[0] === filter);
+  document.getElementById('oppGrid').innerHTML = list.map(x => `
+    <div class="card">
+      <span class="tag">${x.o[0].toUpperCase()}</span>
+      <h4>${x.o[1]}</h4>
+      <p>${x.o[2]}</p>
+      <div class="cardfoot">
+        <span>${x.o[3]}</span>
+        <div style="display:flex;gap:6px">
+          <button class="pill ${savedOpps.includes(x.i) ? 'saved' : ''}" onclick="toggleSaveOpp(${x.i})">${savedOpps.includes(x.i) ? '★' : '☆'}</button>
+          <button class="pill" onclick="oppDetail(${x.i})">Detalhes →</button>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function filterOpp(f, btn) {
+  document.querySelectorAll('#oppFilters .pill').forEach(p => p.classList.remove('active-pill'));
+  if (btn) btn.classList.add('active-pill');
+  renderOpps(f);
+}
+
+const COLLEGES_DATA = [
+  { name: 'USP — Universidade de São Paulo', city: 'São Paulo / SP', type: 'Pública', mode: 'Presencial', course: 'Engenharia de Computação / Medicina / Direito', cutoff: '790 – 835 pts (ENEM/FUVEST)', scholarships: '100% Gratuita + Auxílio Permanência' },
+  { name: 'UNICAMP — Univ. Estadual de Campinas', city: 'Campinas / SP', type: 'Pública', mode: 'Presencial', course: 'Ciência da Computação / Engenharias', cutoff: '775 – 820 pts', scholarships: '100% Gratuita + Moradia Estudantil' },
+  { name: 'UNIFESP — Univ. Federal de São Paulo', city: 'Santos / São Paulo / SP', type: 'Pública', mode: 'Presencial', course: 'Engenharia / Saúde / Ciências do Mar', cutoff: '715 – 795 pts (SISU)', scholarships: '100% Gratuita + SISU' },
+  { name: 'PUC-SP — Pontifícia Univ. Católica', city: 'São Paulo / SP', type: 'Privada', mode: 'Presencial / EAD', course: 'Direito / Psicologia / Administração / Tech', cutoff: '660 – 730 pts', scholarships: 'PROUNI 100% e 50% + Bolsa Mérito' },
+  { name: 'Universidade Santa Cecília (UNISANTA)', city: 'Santos / SP', type: 'Privada', mode: 'Presencial / EAD', course: 'Engenharias / Saúde / Direito', cutoff: '580 – 650 pts', scholarships: 'PROUNI + FIES + Convênios' },
+  { name: 'IFSP — Instituto Federal de São Paulo', city: 'Cubatão / SP', type: 'Pública', mode: 'Presencial', course: 'Análise e Desenv. de Sistemas / Automação', cutoff: '630 – 695 pts (SISU)', scholarships: '100% Gratuita' }
+];
+let savedColleges = [0, 2];
+
+function toggleSaveCollege(i) {
+  savedColleges.includes(i) ? savedColleges = savedColleges.filter(x => x !== i) : savedColleges.push(i);
+  renderColleges();
+  renderCompare();
+  toast(savedColleges.includes(i) ? 'Faculdade salva no Comparador!' : 'Removida do Comparador.');
+}
+
+function collegeDetail(i) {
+  const c = COLLEGES_DATA[i];
+  openApp('college-detail');
+  document.getElementById('detailCollegeName').textContent = c.name;
+  document.getElementById('detailCollegeMeta').textContent = `${c.city} · ${c.type} · ${c.mode}`;
+  document.getElementById('detailCourse').textContent = c.course;
+  document.getElementById('detailDesc').textContent = `Instituição ${c.type.toLowerCase()} localizada em ${c.city}.`;
+  document.getElementById('detailInfo').textContent = `Nota de corte estimada: ${c.cutoff}. Bolsas e acesso: ${c.scholarships}. Confirme sempre o edital vigente no portal oficial.`;
+  const btn = document.getElementById('detailSaveBtn');
+  btn.textContent = savedColleges.includes(i) ? '★ Salva no Comparador' : '☆ Salvar para comparar';
+  btn.onclick = () => { toggleSaveCollege(i); collegeDetail(i); };
+}
+
+function renderColleges() {
+  const q = (document.getElementById('collegeSearch')?.value || '').toLowerCase();
+  const typeF = document.getElementById('collegeTypeFilter')?.value || 'all';
+  const list = COLLEGES_DATA.map((c, i) => ({ c, i })).filter(x =>
+    (typeF === 'all' || x.c.type === typeF) &&
+    (x.c.name + ' ' + x.c.city + ' ' + x.c.course).toLowerCase().includes(q)
+  );
+
+  document.getElementById('collegeGrid').innerHTML = list.map(x => `
+    <div class="card">
+      <span class="tag ${x.c.type === 'Pública' ? 'dark-tag' : ''}">${x.c.type.toUpperCase()}</span>
+      <h4>${x.c.name}</h4>
+      <p><b>Cursos:</b> ${x.c.course}<br><b>Local:</b> ${x.c.city} · <b>Corte est.:</b> ${x.c.cutoff}</p>
+      <div class="cardfoot">
+        <button class="pill ${savedColleges.includes(x.i) ? 'saved' : ''}" onclick="toggleSaveCollege(${x.i})">
+          ${savedColleges.includes(x.i) ? '★ No Comparador' : '☆ Comparar'}
+        </button>
+        <button class="pill" onclick="collegeDetail(${x.i})">Detalhes →</button>
+      </div>
+    </div>
+  `).join('') || '<div class="card empty">Nenhuma faculdade encontrada com esse filtro.</div>';
+}
+
+function renderCompare() {
+  const box = document.getElementById('compareBox');
+  if (!box) return;
+  const arr = savedColleges.map(i => COLLEGES_DATA[i]).filter(Boolean);
+  if (!arr.length) {
+    box.innerHTML = '<div class="empty">Salve pelo menos uma faculdade na aba "Faculdades" para comparar lado a lado.</div>';
+    return;
+  }
+  box.innerHTML = `
+    <table class="compare">
+      <thead><tr><th>Critério</th>${arr.map(c => `<th>${escapeHtml(c.name)}</th>`).join('')}</tr></thead>
+      <tbody>
+        <tr><td><b>Tipo</b></td>${arr.map(c => `<td><span class="tag">${c.type}</span></td>`).join('')}</tr>
+        <tr><td><b>Localização</b></td>${arr.map(c => `<td>${escapeHtml(c.city)}</td>`).join('')}</tr>
+        <tr><td><b>Modalidade</b></td>${arr.map(c => `<td>${escapeHtml(c.mode)}</td>`).join('')}</tr>
+        <tr><td><b>Principais Cursos</b></td>${arr.map(c => `<td>${escapeHtml(c.course)}</td>`).join('')}</tr>
+        <tr><td><b>Nota de Corte Est.</b></td>${arr.map(c => `<td><b>${escapeHtml(c.cutoff)}</b></td>`).join('')}</tr>
+        <tr><td><b>Bolsas / Acesso</b></td>${arr.map(c => `<td>${escapeHtml(c.scholarships)}</td>`).join('')}</tr>
+      </tbody>
+    </table>
+  `;
+}
+
+function renderCommunities() {
+  const comms = [
+    ['ENEM 2026 — Nacional', 'Todo o Brasil', 'Comunidade aberta para estudantes de todos os estados trocarem materiais, dicas e apoio.'],
+    ['Tecnologia & Engenharias (Brasil)', 'Nacional', 'Grupo de estudos em Exatas e Tech conectando vestibulandos de norte a sul.'],
+    ['Saúde & Medicina — Rede Nacional', 'Nacional', 'Foco em Biologia, Química, redação e notas de corte do SISU em todo o país.'],
+    ['Estudantes de Escolas Públicas & ETECs', 'Nacional', 'Troca de experiências sobre cotas, PROUNI, FIES e vestibulares públicos e federais.']
+  ];
+  document.getElementById('communityGrid').innerHTML = comms.map(c => `
+    <div class="card">
+      <span class="tag">${c[1]}</span>
+      <h4>${c[0]}</h4>
+      <p>${c[2]}</p>
+      <div class="cardfoot">
+        <span>Comunidade ativa</span>
+        <button class="btn light sm" onclick="openApp('connect')">Participar →</button>
+      </div>
+    </div>
+  `).join('');
+}
+
+/* PERFIL, GAMIFICAÇÃO & ASSISTENTE */
+function renderProfile(area, goalCourse, points, level) {
+  const u = state.user;
+  document.getElementById('profileAvatar').textContent = (u.name[0] || 'A').toUpperCase();
+  document.getElementById('profileName').textContent = u.name;
+  document.getElementById('profileInfo').textContent = `${u.school || 'Ensino Médio'} (${u.year}) · ${u.city}/${u.uf} · ${points} Pontos A.P.R.O.V.A`;
+  document.getElementById('profileChips').innerHTML = `
+    <span class="tag">${area}</span>
+    <span class="pill">Meta: ${goalCourse}</span>
+    <span class="pill">Nível: ${level}</span>
+    <span class="pill">ENEM 2026</span>
+  `;
+
+  const affinities = [
+    { label: area, pct: 88 },
+    { label: 'Resolução de Problemas & Lógica', pct: 79 },
+    { label: 'Comunicação & Projetos', pct: 64 },
+    { label: 'Gestão & Liderança', pct: 58 }
+  ];
+  document.getElementById('profileAffinityBars').innerHTML = affinities.map(a => `
+    <div class="affinity-row">
+      <div class="affinity-head"><span>${a.label}</span><span style="color:var(--r)">${a.pct}%</span></div>
+      <div class="bar"><i style="width:${a.pct}%"></i></div>
+    </div>
+  `).join('');
+
+  const achs = [
+    { icon: '🏆', title: 'Perfil Completo', desc: 'Cadastro e teste vocacional concluídos', ok: true },
+    { icon: '🔥', title: 'Foco Constante', desc: 'Sequência ativa de estudos iniciada', ok: true },
+    { icon: '💬', title: 'Estudante Conectado', desc: 'Participando da rede e do chat', ok: true },
+    { icon: '📥', title: 'Verificador Ativo', desc: 'E-mail validado e recebendo mensagens', ok: true }
+  ];
+  document.getElementById('achievementsGrid').innerHTML = achs.map(a => `
+    <div class="ach-card ${a.ok ? 'unlocked' : ''}">
+      <div style="font-size:22px">${a.icon}</div>
+      <div><b style="font-size:12.5px;display:block">${a.title}</b><small class="muted">${a.desc}</small></div>
+    </div>
+  `).join('');
+}
+
+const ASSISTANT_KB = {
+  sisu: 'O <b>SISU (Sistema de Seleção Unificada)</b> utiliza exclusivamente a nota do último ENEM para selecionar estudantes em universidades públicas. Você pode escolher até 2 opções de curso e acompanhar as notas de corte parciais diariamente durante as inscrições no portal oficial do MEC.',
+  prouni: 'O <b>PROUNI</b> oferece bolsas de estudo de <b>100% (integrais)</b> e <b>50% (parciais)</b> em faculdades privadas. Para participar, é necessário ter feito o ENEM mais recente (mínimo de 450 pontos na média e nota acima de zero na redação) e atender aos critérios de renda familiar e escolaridade.',
+  fies: 'O <b>FIES</b> permite financiar a mensalidade de cursos superiores em instituições privadas avaliadas positivamente pelo MEC, começando a pagar conforme sua renda após a conclusão do curso.',
+  enem: 'O <b>ENEM</b> é composto por 4 provas objetivas (Linguagens, Humanas, Natureza e Matemática — 45 questões cada) e uma Redação dissertativo-argumentativa. A nota usa a Teoria de Resposta ao Item (TRI), valorizando a coerência nos acertos.',
+  redacao: 'Para evoluir na <b>Redação do ENEM</b>: 1) Deixe sua tese explícita na introdução; 2) Use um repertório sociocultural pertinente em cada parágrafo de desenvolvimento; 3) Conecte os parágrafos; 4) Feche com uma proposta de intervenção contendo Agente, Ação, Meio, Finalidade e Detalhamento.',
+  curso: '<b>Bacharelado</b> (4 a 5 anos) forma profissionais generalistas para o mercado; <b>Licenciatura</b> habilita para dar aulas na Educação Básica; <b>Tecnólogo</b> (2 a 3 anos) tiene foco prático e rápido ingresso no mercado.',
+  escolha: 'Checklist para escolher sua faculdade: 1) Conceito do curso no MEC (e-MEC); 2) Grade curricular; 3) Localização e custo de transporte/moradia; 4) Existência de bolsas, auxílios ou programas de estágio.'
+};
+
+function showAnswer(html) {
+  const b = document.getElementById('answerBox');
+  b.classList.remove('hidden');
+  b.innerHTML = `<b>Meu A.P.R.O.V.A ✦</b><p style="margin:8px 0">${html}</p><small class="muted">Orientação personalizada do A.P.R.O.V.A Conecta. Confirme sempre editais e prazos nos portais oficiais.</small>`;
+}
+
+function answer(type) {
+  if (type === 'faculdades') {
+    const area = state.quiz?.area || 'Tecnologia e Exatas';
+    const course = state.quiz?.goalCourse || 'Engenharia de Computação';
+    return showAnswer(`Com base no seu perfil em <b>${area}</b>, recomendamos explorar cursos como <b>${course}</b> em instituições como USP, UNICAMP, UNIFESP e IFSP (públicas via SISU/Vestibular) ou PUC e UNISANTA (com bolsas PROUNI). Acesse a aba <b>Faculdades</b> para comparar notas de corte.`);
+  }
+  if (type === 'estudar') {
+    const pending = state.tasks.filter(t => !t.done);
+    const next = pending[0];
+    return showAnswer(next
+      ? `Você tem <b>${pending.length} tarefa(s)</b> pendente(s) hoje. Comece por <b>${next.subject}</b> (${next.time}) e resolva as 5 questões comentadas no seu Plano de Estudos!`
+      : 'Parabéns! Você concluiu todas as tarefas planejadas para hoje. Que tal revisar seus erros recentes ou conversar com colegas no Conecta?');
+  }
+  showAnswer(ASSISTANT_KB[type] || 'Posso te ajudar com SISU, PROUNI, FIES, ENEM, Redação, escolha de faculdades e organização do seu cronograma!');
+}
+
+function ask() {
+  const input = document.getElementById('ask');
+  const q = input.value.trim().toLowerCase();
+  if (!q) return;
+  if (q.includes('sisu')) answer('sisu');
+  else if (q.includes('prouni') || q.includes('bolsa')) answer('prouni');
+  else if (q.includes('fies') || q.includes('financ')) answer('fies');
+  else if (q.includes('reda')) answer('redacao');
+  else if (q.includes('faculdade') || q.includes('universidade') || q.includes('curso')) answer('faculdades');
+  else if (q.includes('estud') || q.includes('hoje') || q.includes('cronograma')) answer('estudar');
+  else answer('enem');
+  input.value = '';
+}
+
+function guideAnswer(type) {
+  const g = document.getElementById('guideBox');
+  g.classList.remove('hidden');
+  g.innerHTML = `<b>Guia Rápido A.P.R.O.V.A ▣</b><p style="margin:8px 0 0">${ASSISTANT_KB[type] || ''}</p>`;
+  g.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+
+/* NOTIFICAÇÕES & CONFIGURAÇÕES */
+function renderNotifications() {
+  const box = document.getElementById('notificationList');
+  if (!box) return;
+  box.innerHTML = state.notifications.map(n => `
+    <div class="rec">
+      <div class="ico">${n.read ? '✓' : '🔔'}</div>
+      <div>
+        <b>${n.read ? 'Lida' : 'Nova atualização'}</b>
+        <p>${escapeHtml(n.text)}</p>
+      </div>
+    </div>
+  `).join('') || '<div class="empty">Nenhuma notificação no momento.</div>';
+}
+
+function markNotificationsRead() {
+  const db = getDB();
+  db.notifications.filter(n => n.userId === state.user.id).forEach(n => n.read = true);
+  saveDB(db);
+  syncFromDB();
+  renderAll();
+  toast('Todas as notificações foram marcadas como lidas.');
+}
+
+function toggleSetting(key) {
+  const db = getDB();
+  const u = db.users.find(x => x.id === state.user.id);
+  if (!u) return;
+  u.settings = u.settings || { publicProfile: true, notifications: true };
+  u.settings[key] = !u.settings[key];
+  saveDB(db);
+  syncFromDB();
+  renderSettings();
+  toast('Preferência de privacidade atualizada.');
+}
+
+function renderSettings() {
+  const a = document.getElementById('publicToggle');
+  const b = document.getElementById('notifToggle');
+  if (a) a.classList.toggle('done', !!state.settings.publicProfile);
+  if (b) b.classList.toggle('done', !!state.settings.notifications);
+}
+
+function exportData() {
+  const blob = new Blob([JSON.stringify({ user: state.user, tasks: state.tasks, performance: state.performance }, null, 2)], { type: 'application/json' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'meus-dados-aprova-conecta.json';
+  a.click();
+  toast('Dados exportados em JSON!');
+}
+
+function resetDemo() {
+  storeSet(DB_KEY, '');
+  storeSet(SESSION_KEY, '');
+  getDB();
+  quickDemoEnter();
+  toast('Ambiente de demonstração restaurado!');
+}
+
+/* INICIALIZAÇÃO */
+(function init() {
+  getDB();
+  renderOpps();
+  renderColleges();
+  const savedUserId = storeGet(SESSION_KEY);
+  if (savedUserId) {
+    const db = getDB();
+    const found = db.users.find(u => u.id === savedUserId);
+    if (found) {
+      state.user = found;
+      state.logged = true;
+      syncFromDB();
+      openApp(found.quiz ? 'dashboard' : 'quiz');
+      return;
+    }
+  }
+  landing();
+})();
+</script>
+</body>
+</html>
